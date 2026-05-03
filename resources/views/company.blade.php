@@ -172,7 +172,7 @@
               <textarea name="description" rows="4" class="w-full px-4 py-2 border rounded-lg" required></textarea>
             </div>
 
-            <button type="submit" class="w-full bg-lime-500 hover:bg-lime-600 text-white py-3 rounded-lg font-bold">
+            <button type="submit" class="w-full bg-purple-800 hover:bg-lime-600 text-white py-3 rounded-lg font-bold">
                Post Job
             </button>
           </form>

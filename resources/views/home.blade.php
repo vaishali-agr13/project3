@@ -299,7 +299,7 @@
   <div class="job-alert-container">
 
     <div class="job-alert-left">
-      <h2>Never miss out <span style="color: #76ac20">on the latest career</span> opportunities</h2>
+      <h2>Never miss out <span style="color: #771f9e">on the latest career</span> opportunities</h2>
       
       <p>
         Get daily alerts and stay ahead!
@@ -321,7 +321,7 @@
 
 
 <!-- 🔹 WHATSAPP COMMUNITY SECTION -->
-<section class="py-16 text-white" style="background:#76ac20; position:relative; z-index:1;">
+<section class="py-16 text-white" style="background:#771f9e; position:relative; z-index:1;">
     <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
 
     <!-- LEFT CONTENT -->
@@ -342,7 +342,7 @@
           </ul>
 
           <a href="https://chat.whatsapp.com/YOUR-LINK-HERE" target="_blank"
-            class="inline-block bg-white text-lime-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+            class="inline-block bg-white bg-purple-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
             Join WhatsApp Community
           </a>
 

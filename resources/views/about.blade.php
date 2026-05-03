@@ -6,7 +6,7 @@
 <section class="py-16 bg-white">
   <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
     <div>
-      <h2 class="text-3xl font-bold text-lime-500 mb-4">About Us</h2>
+      <h2 class="text-3xl font-bold mb-4">About Us</h2>
       <p class="text-gray-600 mb-4">
         We are a modern digital platform focused on connecting users with the best opportunities. Our mission is to simplify access to jobs, services, and professional growth.
       </p>
@@ -23,7 +23,7 @@
 <!-- 🔹 SECTION 2: OUR FEATURES -->
 <section class="py-16 bg-gray-50">
   <div class="max-w-6xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-bold text-lime-500 mb-10">Why Choose Us</h2>
+    <h2 class="text-3xl font-bold mb-10">Why Choose Us</h2>
 
     <div class="grid md:grid-cols-3 gap-8">
       
@@ -54,14 +54,14 @@
   <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
 
     <div class="bg-purple-50 p-8 rounded-2xl shadow">
-      <h3 class="text-2xl font-semibold text-lime-500 mb-4">Our Mission</h3>
+      <h3 class="text-2xl font-semibold mb-4">Our Mission</h3>
       <p class="text-gray-600">
         Our mission is to bridge the gap between talent and opportunity by providing a reliable and easy-to-use platform for job seekers and employers.
       </p>
     </div>
 
     <div class="bg-purple-50 p-8 rounded-2xl shadow">
-      <h3 class="text-2xl font-semibold text-lime-500 mb-4">Our Vision</h3>
+      <h3 class="text-2xl font-semibold  mb-4">Our Vision</h3>
       <p class="text-gray-600">
         We aim to become a leading job platform that empowers millions of users to achieve their professional goals.
       </p>
@@ -71,12 +71,12 @@
 </section>
 
 <!-- 🔹 SECTION 4: CALL TO ACTION -->
-<section class="py-16 text-lime-500 text-white text-center">
+<section class="py-16 bg-purple-800 text-white text-center">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
     <p class="mb-6 text-purple-100">Join our platform today and explore thousands of job opportunities.</p>
     
-    <a href="/" class="bg-white text-lime-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+    <a href="/" style="color:black;" class="bg-white bg-purple-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
       Browse Jobs
     </a>
   </div>

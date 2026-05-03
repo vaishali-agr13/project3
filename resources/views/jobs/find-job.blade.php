@@ -116,7 +116,7 @@
                     <a href="{{ url('/categories/'.$category->id) }}" style="text-decoration: none; display: block; width: 100%;">
                         <div class="category-box">
                             <div class="category-info">
-                                <i style="font-size: 24px; color:#76ac20" class="fas {{ !empty($category->icon) ? $category->icon : 'fa-folder' }}"></i>
+                                <i style="font-size: 24px; color:#771f9e" class="fas {{ !empty($category->icon) ? $category->icon : 'fa-folder' }}"></i>
                                 <p class="cat-name" style="font-weight: bold; margin: 10px 0 5px; color: #333;">{{$category->name}}</p>
                                 <span style="font-size: 12px; color: #888;">{{$category->jobs_count}} Jobs Available</span>
                             </div>
@@ -425,7 +425,7 @@ main {
 }
 
 .jobs-hero .hero-content .highlight {
-  color: #76ac20;
+  color: #771f9e;
 }
 
 .jobs-hero .hero-content p {
@@ -544,7 +544,7 @@ main {
 }
 
  .swiper-pagination-bullet-active {
-        background: #76ac20 !important; /* Your Purple Color */
+        background: #771f9e !important; /* Your Purple Color */
     }
     
     .swiper-pagination {
@@ -778,7 +778,7 @@ margin-bottom: 10px;
 .filter-btn {
   width: 100%;
   padding: 10px;
-  background: #76ac20;
+  background: #771f9e;
   color: white;
   border: none;
   border-radius: 6px;
