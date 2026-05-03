@@ -341,7 +341,7 @@
             <li>✔ Direct Hiring Notifications</li>
           </ul>
 
-          <a href="https://chat.whatsapp.com/YOUR-LINK-HERE" target="_blank"
+          <a href="https://chat.whatsapp.com/YOUR-LINK-HERE" target="_blank" style="color:black;"
             class="inline-block bg-white bg-purple-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
             Join WhatsApp Community
           </a>
