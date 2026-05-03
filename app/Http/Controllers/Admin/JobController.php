@@ -243,7 +243,7 @@ class JobController extends Controller
 
 
     public function apply(Request $request, $id)
-            {
+        {
                 // 🔐 Step 1: Validation
                 $request->validate([
                     'full_name' => 'required|string|max:255',
@@ -253,7 +253,7 @@ class JobController extends Controller
                     'cover_letter' => 'nullable|string',
                 ]);
 
-                // 📄 Step 2: Resume Upload (safe handling)
+                // 📄 Step 2: Resume Upload
                 $filePath = null;
 
                 if ($request->hasFile('resume')) {
@@ -261,7 +261,7 @@ class JobController extends Controller
                     $filePath = $request->file('resume')->storeAs('resumes', $fileName, 'public');
                 }
 
-                // 👤 Step 3: If user NOT logged in → store session & redirect
+                // 👤 Step 3: Not logged in → store session & redirect to register
                 if (!auth()->check()) {
 
                     session()->put('pending_apply', [
@@ -276,28 +276,50 @@ class JobController extends Controller
                     return redirect()->route('register');
                 }
 
-                // 💾 Step 4: Save Application (logged-in user)
+                // 👮 Step 4: If ADMIN is logged in → logout & send to register
+                $user = auth()->user();
+
+                if ($user->role === 'admin') {
+
+                    auth()->logout();
+                    request()->session()->invalidate();
+                    request()->session()->regenerateToken();
+
+                    session()->put('pending_apply', [
+                        'job_id' => $id,
+                        'full_name' => $request->full_name,
+                        'email' => $request->email,
+                        'cover_letter' => $request->cover_letter,
+                        'phone' => $request->phone,
+                        'resume' => $filePath,
+                    ]);
+
+                    return redirect()->route('register')
+                        ->with('error', 'Admin cannot apply for jobs. Please register as candidate.');
+                }
+
+                // 💾 Step 5: Save Application (Candidate only)
                 Application::create([
                     'job_id' => $id,
                     'full_name' => $request->full_name,
-                    'email' => auth()->user()->email,
+                    'email' => $user->email,
                     'phone' => $request->phone,
                     'resume' => $filePath,
-                    'user_id' => auth()->id(),
+                    'user_id' => $user->id,
                     'cover_letter' => $request->cover_letter,
                 ]);
 
-                   $user = auth()->user();
+                // 🧑‍💼 Step 6: Ensure role is candidate
+                // if ($user->role !== 'candidate') {
+                //     $user->role = 'candidate';
+                //     $user->save();
+                // }
 
-                    if ($user->role !== 'candidate') {
-                        $user->role = 'candidate';
-                        $user->save();
-                    }
-
+                // 🔁 Step 7: Redirect based on role
                 return redirect()
                     ->route('candidate.profile')
                     ->with('success', 'Job applied successfully!');
-            }
+        }
 
 
         public function storeApplicationFromLogin($form, $jobId)
