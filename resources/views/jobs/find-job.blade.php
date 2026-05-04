@@ -276,7 +276,9 @@
 
                 <div class="job-company">
                   <h3>{{$job->company_name}}</h3>
-                  <p>{{$job->location}}</p>
+                  <p>
+                    {{ \Illuminate\Support\Str::limit($job->location, 10, '...') }}
+                  </p>
                 </div>
               </div>
 

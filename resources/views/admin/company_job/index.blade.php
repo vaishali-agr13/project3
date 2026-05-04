@@ -55,7 +55,9 @@
                     <td>{{ $job->title }}</td>
                     <td>{{ $job->company_name }}</td>
                     <td>{{ $job->company_email }}</td>
-                    <td>{{ $job->location }}</td>
+                    <td>
+                         {{ \Illuminate\Support\Str::limit($job->location, 10, '...') }}
+                    </td>
                     <td>{{ $job->categoryData->name ?? 'N/A' }}</td>
                     <td>₹ {{ formatSalary($job->salary_min) }} - ₹{{ formatSalary($job->salary_max) }}</td>
                     <td><span class="badge badge-info">{{ $job->job_type }}</span></td>
