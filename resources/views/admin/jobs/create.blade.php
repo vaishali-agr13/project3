@@ -37,7 +37,7 @@
                 <h3 class="card-title">Job Details</h3>
             </div>
             
-            <form action="{{ route('admin.jobs.store') }}" method="POST">
+            <form action="{{ route('admin.jobs.store') }}" method="POST" onsubmit="return validateEditor()">
                 @csrf
                 <div class="card-body">
                     <div class="row">
@@ -240,5 +240,21 @@
 
     // CKEditor init
     CKEDITOR.replace('description');
+
+
+
+    function validateEditor() {
+            let data = CKEDITOR.instances.description.getData().trim();
+
+            if (data === '') {
+                alert('Job Description is required');
+                return false;
+            }
+
+            // textarea me data daalo (important)
+            CKEDITOR.instances.description.updateElement();
+
+            return true;
+    }
 </script>
 @stop
