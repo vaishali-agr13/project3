@@ -102,8 +102,9 @@
 
                     <div class="prose max-w-none text-gray-700 leading-relaxed" > 
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Skills Required</h3>
-
-                           @php
+                
+                             {{$job->skills_required}}
+                           <!-- @php
                                 $skills = is_string($job->skills_required)
                                     ? json_decode($job->skills_required, true)
                                     : $job->skills_required;
@@ -113,7 +114,7 @@
                                 @foreach($skills as $skill)
                                     <span>{{ $skill }},</span>
                                 @endforeach
-                            @endif
+                            @endif -->
                     </div>
 
                     <div class="prose max-w-none text-gray-700 leading-relaxed">
