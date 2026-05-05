@@ -91,9 +91,10 @@
                     <td><b>{{ $app->full_name }}</b></td>
                     <td><span class="badge badge-info">{{ $app->job->title ?? 'N/A' }}</span></td>
                     <td>{{ $app->email }}</td>
-                    <td>
+                    <td>{{ $app->phone }}</td>
+                    <!-- <td>
                        <a href="https://wa.me/91{{ $app->phone }}" target="_blank">Chat on WhatsApp</a>
-                    </td>
+                    </td> -->
                     <td>
                         <a href="{{ asset('storage/' . $app->resume) }}" target="_blank" class="btn btn-sm btn-outline-danger">
                             <i class="fas fa-file-pdf"></i> View Resume
