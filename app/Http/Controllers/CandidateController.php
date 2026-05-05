@@ -43,7 +43,8 @@ class CandidateController extends Controller
 
 
     public function candidateList(){
-          $candidates = User::where('role', 'candidate')->get();
+         // $candidates = User::where('role', 'candidate')->get();
+         $candidates = User::with('profile')->where('role', 'candidate')->get();
 
           return view('candidate.index', compact('candidates'));
     }

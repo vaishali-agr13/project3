@@ -61,20 +61,23 @@
             </div>
 
 
-            @php
+            <!-- @php
                 $selectedSkills = old('skills_required', is_array($job->skills_required) 
                     ? $job->skills_required 
                     : json_decode($job->skills_required, true));
-            @endphp
+            @endphp -->
            <div class="form-group">
-                <label>Skills Required</label>
-                <select name="skills_required[]" multiple class="form-control">
+                <label>Skills Required</label>              
+                 <input type="text" name="skills_required" class="form-control" value="{{ $job->skills_required }}">
+
+
+                <!-- <select name="skills_required[]" multiple class="form-control">
                     <option value="php" {{ in_array('php', $selectedSkills ?? []) ? 'selected' : '' }}>PHP</option>
                     <option value="laravel" {{ in_array('laravel', $selectedSkills ?? []) ? 'selected' : '' }}>Laravel</option>
                     <option value="mysql" {{ in_array('mysql', $selectedSkills ?? []) ? 'selected' : '' }}>MySQL</option>
                     <option value="javascript" {{ in_array('javascript', $selectedSkills ?? []) ? 'selected' : '' }}>JavaScript</option>
                     <option value="vue" {{ in_array('vue', $selectedSkills ?? []) ? 'selected' : '' }}>Vue.js</option>
-                </select>
+                </select> -->
             </div>
             
             <div class="form-group">
@@ -102,7 +105,7 @@
 
             <div class="form-group">
                 <label>Description</label>
-                <textarea name="description" class="form-control">{{ $job->description }}</textarea>
+                <textarea name="description" class="form-control">{!! $job->description !!}</textarea>
             </div>
 
             <div class="form-group">

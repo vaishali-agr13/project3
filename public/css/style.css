@@ -7,7 +7,7 @@ margin: 0;
 
 /* HERO */
 .hero {
-  color: #771f9e;
+  color: #0049af;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,7 +67,7 @@ input::placeholder, textarea::placeholder {
 }
 
 .hero-text span {
-  color: #771f9e;
+  color: #0049af;
 }
 
 /* SEARCH */
@@ -85,6 +85,29 @@ input::placeholder, textarea::placeholder {
 
 }
 
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.leading-relaxed {
+  padding-top:20px !important;
+}
 @media (max-width: 768px) {
 
    .search-item{
@@ -267,7 +290,7 @@ input::placeholder, textarea::placeholder {
 
 .search-box button {
   padding: 12px 25px;
-  background: #771f9e;
+  background: #0049af;
   color: white;
   border: none;
   border-radius: 50px;
@@ -303,7 +326,7 @@ input::placeholder, textarea::placeholder {
   display: block;
   width: 60px;
   height: 4px;
-  background: #771f9e;
+  background: #0049af;
   border-radius: 10px;
   margin-top: 6px;
 }
@@ -476,7 +499,7 @@ input::placeholder, textarea::placeholder {
     display: block;
     margin: 10px 20px;
     padding: 10px 15px;
-    background: #771f9e;
+    background: #0049af;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -580,7 +603,7 @@ input::placeholder, textarea::placeholder {
   left: 0;
   height: 4px;
   width: 100%;
-  background: #771f9e;
+  background: #0049af;
   opacity: 1;
 }
 
@@ -598,7 +621,7 @@ input::placeholder, textarea::placeholder {
 
 /* BUTTON */
 .apply-btn {
-   background: #771f9e;
+   background: #0049af;
     color: white;
     padding: 8px 14px;
     border-radius: 20px;
@@ -665,7 +688,7 @@ input::placeholder, textarea::placeholder {
 .btn-explore {
   margin-top:25px;
   display: inline-block;
-  background: #771f9e;
+  background: #0049af;
   color: white;
   padding: 12px 22px;
   border-radius: 25px;
@@ -705,7 +728,7 @@ input::placeholder, textarea::placeholder {
 
 .counter-box h2 {
   font-size: 32px;
-  color: #771f9e;
+  color: #0049af;
 }
 
 /* JOB ALERT */
@@ -790,7 +813,7 @@ input::placeholder, textarea::placeholder {
   position: absolute;
   top: -15px;
   left: 20px;
-  background: #771f9e;
+  background: #0049af;
   color: white;
   font-size: 12px;
   padding: 5px 10px;
@@ -809,7 +832,7 @@ input::placeholder, textarea::placeholder {
   top: 50%;
   transform: translateY(-50%);
   font-size: 24px;
-  color: #771f9e;
+  color: #0049af;
 }
 
 .how-card:hover {
@@ -825,7 +848,7 @@ input::placeholder, textarea::placeholder {
 }
 
 .advice-card a {
-  color: #771f9e;   /* blue */
+  color: #0049af;   /* blue */
   text-decoration: none;
   font-weight: 600;
   display: inline-block;
@@ -867,7 +890,7 @@ input::placeholder, textarea::placeholder {
   padding: 12px 20px;
   border-radius: 50px;
   border: none;
-  background: #771f9e;
+  background: #0049af;
   color: white;
   cursor: pointer;
   white-space: nowrap;
@@ -898,7 +921,7 @@ input::placeholder, textarea::placeholder {
 
 /* TOP HEADER */
 .top-header {
-  background: #771f9e;
+  background: #0049af;
   color: white;
   padding: 8px 5%;
   display: flex;
@@ -951,7 +974,7 @@ input::placeholder, textarea::placeholder {
 
 /* FOOTER */
 .main-footer {
-  background: #771f9e;
+  background: #0049af;
   color: #cbd5e1;
   margin-top: 60px;
 }
@@ -1044,7 +1067,7 @@ input::placeholder, textarea::placeholder {
 }
 
 .category-icon {
-  color:#771f9e;
+  color:#0049af;
 }
 
 .cat-name {
@@ -1055,10 +1078,10 @@ input::placeholder, textarea::placeholder {
   /*color: #4b5563;*/ 
 }
 .custom-border {
-  border-top: 2px solid #771f9e
+  border-top: 2px solid #0049af
 }
 .submit-btn {
-  background-color: #771f9e;
+  background-color: #0049af;
 }
 
 header {

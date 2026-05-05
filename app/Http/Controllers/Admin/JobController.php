@@ -109,7 +109,7 @@ class JobController extends Controller
             'description' => $request->description,
             'job_type' => $request->job_type,
             'status' => $request->status,
-            'skills_required'=>json_encode($request->skills_required),
+            'skills_required'=>$request->skills_required,
             'who_can_apply'=>$request->who_can_apply,
             'roles_responsibility'=>$request->roles_responsibility,
             'no_of_openings'=>$request->no_of_openings,
@@ -168,7 +168,6 @@ class JobController extends Controller
              'posted_by_type' => 'required'  ,
              'skills_required'=>'required',
              'who_can_apply'=>'required',
-             'roles_responsibility'=>'required',
              'no_of_openings'=>'required'
         ]);
 
@@ -176,7 +175,7 @@ class JobController extends Controller
 
         $data = $request->all();
 
-        $data['skills_required'] = json_encode($request->skills_required);
+        //$data['skills_required'] = json_encode($request->skills_required);
         $job = Job::create($data);
        
 

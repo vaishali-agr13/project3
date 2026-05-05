@@ -95,7 +95,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="salary">Salary Min</label>
-                                <input type="text" name="salary_min" class="form-control" placeholder="e.g. 50000" value="{{ old('salary_min') }}">
+                                <input type="text" name="salary_min" class="form-control" placeholder="e.g. 50000" value="{{ old('salary_min') }}" required>
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="salary">Salary Max</label>
-                                <input type="text" name="salary_max" class="form-control" placeholder="e.g. 600000 "value="{{ old('salary_max') }}">
+                                <input type="text" name="salary_max" class="form-control" placeholder="e.g. 600000 "value="{{ old('salary_max') }}" required>
                             </div>
                         </div>
 
@@ -157,8 +157,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="location">Roles and Responsibility</label>
-                                <input type="text" name="roles_responsibility" class="form-control" placeholder="Roles and Responsibility" value="{{ old('roles_responsibility') }}" required>
+                                <label for="location">Roles and Responsibility--</label>
+                                <input type="text" name="roles_responsibility" class="form-control" placeholder="Roles and Responsibility" value="{{ old('roles_responsibility') }}" >
                             </div>
                         </div>
                     </div>
@@ -174,13 +174,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="status">Skills Required</label>
-                               <select name="skills_required[]" multiple class="form-control">
+                                <input type="text" name="skills_required" class="form-control" placeholder="Skills Required" value="{{ old('skills_required') }}" required>
+                                <!-- <select name="skills_required[]" multiple class="form-control">
                                     <option value="php">PHP</option>
                                     <option value="laravel">Laravel</option>
                                     <option value="mysql">MySQL</option>
                                     <option value="javascript">JavaScript</option>
                                     <option value="vue">Vue.js</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                         

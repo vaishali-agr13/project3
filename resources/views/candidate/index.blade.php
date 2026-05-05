@@ -23,6 +23,11 @@
                     <th style="width: 60px;">#</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Phone</th>
+                    <th>Skills</th>
+                    <th>Experience</th>
+                    <th>Education</th>
+                    <th>Resume</th>
                     <th>Registered On</th>
                 </tr>
             </thead>
@@ -33,6 +38,16 @@
                         <td>{{ $key + 1 }}</td>
                         <td><strong>{{ $candidate->name }}</strong></td>
                         <td>{{ $candidate->email }}</td>
+                        <td>{{ $candidate->profile->phone ?? 'N/A' }}</td>
+                        <td>{{ $candidate->profile->skills ?? 'N/A' }}</td>
+                        <td>{{ $candidate->profile->experience ?? 'N/A' }}</td>
+                        <td>{{ $candidate->profile->education ?? 'N/A' }}</td>
+                        <td>
+                            <a href="{{ asset('storage/' . optional($candidate->profile)->resume) }}" target="_blank" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-file-pdf"></i> View Resume
+                            </a>
+                        </td>
+                        </td>
                         <td>
                             {{ optional($candidate->created_at)->format('d M Y') ?? 'N/A' }}
                         </td>

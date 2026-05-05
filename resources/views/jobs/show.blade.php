@@ -19,7 +19,7 @@
     </a>
 
     <a href="https://chat.whatsapp.com/H4PArHFPz8L0W4L3msdTKP" target="_blank"
-       style="display:block; margin-top:10px; background:#771f9e; color:white; padding:10px; border-radius:5px; text-decoration:none;">
+       style="display:block; margin-top:10px; background:#0049af; color:white; padding:10px; border-radius:5px; text-decoration:none;">
         Join Community
     </a>
 
@@ -95,12 +95,12 @@
                             <li>Ability to work in a fast-paced environment.</li>
                         </ul> -->
                     </div>
-                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                    <div class="prose max-w-none text-gray-700 leading-relaxed" >
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Roles & Responsibilities</h3>
                             {{$job->roles_responsibility}}
                     </div>
 
-                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                    <div class="prose max-w-none text-gray-700 leading-relaxed" > 
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Skills Required</h3>
 
                            @php
@@ -126,9 +126,8 @@
                             {{$job->no_of_openings}}
                     </div>
 
-                    <button type="button" onclick="toggleApplyForm()" 
-                        class="bg-purple-800 hover:bg-lime-600 text-white px-4 py-2 rounded-lg ml-auto block">
-                        Apply Now
+                    <button type="button" onclick="toggleApplyForm()" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg ml-auto block transition">
+                       Apply Now
                     </button>
 
                 </div>

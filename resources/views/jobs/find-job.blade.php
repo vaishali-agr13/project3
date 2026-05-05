@@ -76,7 +76,7 @@
                     x-transition:enter="transition ease-out duration-100"
                     x-transition:enter-start="opacity-0 scale-95"
                     x-transition:enter-end="opacity-100 scale-100"
-                    class="absolute left-0 top-full mt-2 w-64 bg-white border border-gray-100 rounded-xl shadow-2xl z-50">
+                    class="absolute left-0 top-full mt-2 min-w-[220px] w-auto max-w-xs bg-white border border-gray-100 rounded-xl shadow-2xl z-50">
                     
                     <div class="p-2 max-h-60 overflow-y-auto custom-scrollbar">
                         <div @click="selected = ''; open = false" 
@@ -85,14 +85,17 @@
                         </div>
 
                         @foreach($categories as $category)
-                            <div @click="selected = '{{ $category->name }}'; open = false" 
-                                class="flex items-center justify-between px-4 py-2.5 hover:bg-blue-50 rounded-lg cursor-pointer transition group"
-                                :class="selected === '{{ $category->name }}' ? 'bg-blue-50' : ''">
-                                
-                                <span class="text-gray-600 group-hover:text-blue-600 font-medium text-sm">{{ $category->name }}</span>
-                                
-                                <template x-if="selected === '{{ $category->name }}'">
-                                    <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                              <div 
+                                  @click="selected = '{{ $category->name }}'; open = false" 
+                                  class="flex items-center px-4 py-2.5 hover:bg-blue-50 rounded-lg cursor-pointer transition group"
+                                  :class="selected === '{{ $category->name }}' ? 'bg-blue-50' : ''">
+
+                                  <span class="block w-full text-left text-gray-600 group-hover:text-blue-600 font-medium text-sm truncate">
+                                      {{ $category->name }}
+                                  </span>
+
+                                  <template x-if="selected === '{{ $category->name }}'">
+                                      <svg class="w-4 h-4 text-blue-500 ml-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path>
                                     </svg>
                                 </template>
@@ -116,7 +119,7 @@
                     <a href="{{ url('/categories/'.$category->id) }}" style="text-decoration: none; display: block; width: 100%;">
                         <div class="category-box">
                             <div class="category-info">
-                                <i style="font-size: 24px; color:#771f9e" class="fas {{ !empty($category->icon) ? $category->icon : 'fa-folder' }}"></i>
+                                <i style="font-size: 24px; color:#0049af" class="fas {{ !empty($category->icon) ? $category->icon : 'fa-folder' }}"></i>
                                 <p class="cat-name" style="font-weight: bold; margin: 10px 0 5px; color: #333;">{{$category->name}}</p>
                                 <span style="font-size: 12px; color: #888;">{{$category->jobs_count}} Jobs Available</span>
                             </div>
@@ -288,8 +291,10 @@
               </div>
 
               <div class="job-description">
+
+              {!! Str::limit(strip_tags($job->description), 120) !!}
                 
-                {{ \Illuminate\Support\Str::limit($job->description, 10, '...') }}
+                <!-- {{ \Illuminate\Support\Str::limit($job->description, 10, '...') }} -->
               </div>
 
               @php
@@ -427,7 +432,7 @@ main {
 }
 
 .jobs-hero .hero-content .highlight {
-  color: #771f9e;
+  color: #0049af;
 }
 
 .jobs-hero .hero-content p {
@@ -546,7 +551,7 @@ main {
 }
 
  .swiper-pagination-bullet-active {
-        background: #771f9e !important; /* Your Purple Color */
+        background: #0049af !important; /* Your Purple Color */
     }
     
     .swiper-pagination {
@@ -595,6 +600,8 @@ main {
 
 .filter-group {
   margin-bottom: 20px;
+      text-align: left;
+
 }
 
 .filter-group h4 {
@@ -604,12 +611,11 @@ margin-bottom: 10px;
 
 .filter-group label {
   display: flex;
-    align-items: center; /* Vertically center alignment */
-    gap: 10px;           /* Checkbox aur text ke beech ka gap */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
     margin-bottom: 8px;
     cursor: pointer;
-    font-size: 14px;
-    color: #4b5563;
 }
 
 .main-footer {
@@ -631,6 +637,11 @@ margin-bottom: 10px;
 
 .filter-group input {
   margin: 0;
+}
+
+
+.filter-group span {
+    text-align: left;
 }
 
 .filter-group input[type="checkbox"],
@@ -780,7 +791,7 @@ margin-bottom: 10px;
 .filter-btn {
   width: 100%;
   padding: 10px;
-  background: #771f9e;
+  background: #0049af;
   color: white;
   border: none;
   border-radius: 6px;

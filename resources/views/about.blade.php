@@ -71,12 +71,12 @@
 </section>
 
 <!-- 🔹 SECTION 4: CALL TO ACTION -->
-<section class="py-16 bg-purple-800 text-white text-center">
+<section class="py-16 blue-700 text-white text-center">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
     <p class="mb-6 text-purple-100">Join our platform today and explore thousands of job opportunities.</p>
     
-    <a href="/" style="color:black;" class="bg-white bg-purple-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+    <a href="/" style="color:black;" class="bg-white blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
       Browse Jobs
     </a>
   </div>

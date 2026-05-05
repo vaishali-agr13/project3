@@ -68,7 +68,7 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $cat->name }}</td>
-                        <td>{{ \Illuminate\Support\Str::limit($cat->description, 10, '...') }}</td>
+                        <td>{!! \Illuminate\Support\Str::limit($cat->description, 10, '...') !!}</td>
                         <td>
                         <a href="{{ url('/admin/categories/edit/'.$cat->id) }}" class="btn btn-sm btn-success">
                             Edit

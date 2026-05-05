@@ -1,7 +1,20 @@
+
+
+
 @extends('adminlte::page')
 @section('title', 'My Profile')
 
 @section('content')
+
+@if(session('success'))
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <h3>✅ Your application submitted successfully</h3>
+        <p>Please complete your profile</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+@endif
 
 
     <section class="content-header">
@@ -104,6 +117,51 @@
             </div>
 
         </div>
-    </section>
+</section>
 
+
+@endsection
+
+
+@section('css')
+<style>
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 99999;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+</style>
+@endsection
+
+@section('js')
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let popup = document.getElementById('popup');
+
+    if (popup) {
+        popup.style.display = 'flex';
+    }
+});
+
+function closePopup() {
+    let popup = document.getElementById('popup');
+    if (popup) {
+        popup.style.display = 'none';
+    }
+}
+</script>
 @endsection

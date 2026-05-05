@@ -50,6 +50,13 @@
   <h1 class="text-white" style="color:black;">
     <a href="/">
         <img src="{{ asset('images/company-logo.png') }}"  class="company_logo"  alt="Resume Tips">
+
+            <div class="flex flex-col leading-tight">
+                <span class="font-bold text-[#0049af] text-lg">
+               FK Strategy
+                </span>
+               
+          </div>
     </a>
   </h1>
 

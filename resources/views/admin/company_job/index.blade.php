@@ -62,7 +62,7 @@
                     <td>₹ {{ formatSalary($job->salary_min) }} - ₹{{ formatSalary($job->salary_max) }}</td>
                     <td><span class="badge badge-info">{{ $job->job_type }}</span></td>
                     <td>{{ $job->experience }}</td>
-                    <td>{{ \Illuminate\Support\Str::limit($job->description, 10, '...') }}</td>
+                    <td>{!! \Illuminate\Support\Str::limit($job->description, 10, '...') !!}</td>
 
                     <td>
                         @if($job->status == 1)

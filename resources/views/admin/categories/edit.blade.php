@@ -150,7 +150,7 @@
                     name="description" 
                     class="form-control" 
                     rows="4"
-                >{{ $category->description }}</textarea>
+                >{!! $category->description !!}</textarea>
 
                 @error('description')
                     <small class="text-danger">{{ $message }}</small>

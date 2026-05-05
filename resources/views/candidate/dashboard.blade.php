@@ -98,10 +98,11 @@
                                     <td>{{ $app->job->title }}</td>
                                     <td>{{ $app->job->company_name }}</td>
                                     <td>
-                                        @if($app->status == 'applied')
-                                            <span class="badge badge-info">Applied</span>
-                                        @elseif($app->status == 'shortlisted')
-                                            <span class="badge badge-success">Shortlisted</span>
+                                        
+                                        @if($app->status == 'pending')
+                                            <span class="badge badge-info">Pending</span>
+                                        @elseif($app->status == 'approved')
+                                            <span class="badge badge-success">Approved</span>
                                         @else
                                             <span class="badge badge-danger">Rejected</span>
                                         @endif

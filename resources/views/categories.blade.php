@@ -7,7 +7,7 @@
               <i class="fas {{ !empty($category->icon) ? $category->icon : 'fa-folder' }}"></i>
     </div>
     <h1>{{ $category->name }}</h1>
-    <p>{{ $category->description }}</p>
+    <p>{!! $category->description !!}</p>
 </div>
 
 <section class="section">
@@ -27,7 +27,7 @@
                     @endif
                     <h4>{{ $job->title }}</h4>
                     <p>{{ $job->company_name }}</p>
-                    <p>{{ $job->location }}</p>
+                    <p> {{ \Illuminate\Support\Str::limit($job->location, 10, '...') }}</p>
 
                     <a href="{{ route('jobs.show', $job->id) }}" class="block mt-4">
                         <button class="apply-btn">View Details →</button>    

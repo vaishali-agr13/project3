@@ -10,7 +10,7 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="info">
         <a href="#" class="d-block text-white">
-            {{ auth()->check() ? auth()->user()->name : '' }}
+            FK Strategy {{ auth()->check() ? auth()->user()->name : '' }}
         </a>
     </div>
     </div>

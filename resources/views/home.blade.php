@@ -47,12 +47,16 @@
 </div>
 
 
-
-
 <section class="hero">
   <div class="hero-text">
-    <h2>Find Your <span>Dream Job</span> Easily</h2>
-    <p>Search thousands of jobs from top companies.</p>
+
+    <h2 class="text-3xl font-bold leading-tight mb-3">
+      Find Your <span class="text-blue-600">Dream Job</span> Easily
+    </h2>
+
+    <p class="text-gray-600 mb-5">
+      Search thousands of jobs from top companies.
+    </p>
   
     <form action="{{ url('/find-jobs') }}" method="GET">
 
@@ -223,7 +227,9 @@
                   
                     <h4>{{ $job->title }}</h4>
                     <p>{{ $job->company_name }}</p>
-                    <p>{{ $job->location }}</p>
+                    <p> {{ \Illuminate\Support\Str::limit($job->location, 10, '...') }}</p>
+
+                    
 
                    <a href="{{ route('jobs.show', $job->id) }}" class="block mt-4">
                         <button class="apply-btn">View Details →</button>    
@@ -299,7 +305,7 @@
   <div class="job-alert-container">
 
     <div class="job-alert-left">
-      <h2>Never miss out <span style="color: #771f9e">on the latest career</span> opportunities</h2>
+      <h2>Never miss out <span style="color: #0049af">on the latest career</span> opportunities</h2>
       
       <p>
         Get daily alerts and stay ahead!
@@ -321,7 +327,7 @@
 
 
 <!-- 🔹 WHATSAPP COMMUNITY SECTION -->
-<section class="py-16 text-white" style="background:#771f9e; position:relative; z-index:1;">
+<section class="py-16 text-white" style="background:#0049af; position:relative; z-index:1;">
     <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
 
     <!-- LEFT CONTENT -->
@@ -342,7 +348,7 @@
           </ul>
 
           <a href="https://chat.whatsapp.com/YOUR-LINK-HERE" target="_blank" style="color:black;"
-            class="inline-block bg-white bg-purple-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+            class="inline-block bg-white blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
             Join WhatsApp Community
           </a>
 

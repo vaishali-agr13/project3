@@ -48,9 +48,9 @@
             @endphp
 
             <tbody>
-                @forelse($jobs as $job)
+                @forelse($jobs as $key => $job)
                 <tr>
-                    <td>{{ $job->id }}</td>
+                   <td>{{ $key + 1 }}</td>
                     <td>{{ $job->title }}</td>
                     <td>{{ $job->company_name }}</td>
                     <td>{{ $job->company_email }}</td>
@@ -59,7 +59,7 @@
                     </td>
                     <td>₹ {{ formatSalary($job->salary_min) }} - ₹{{ formatSalary($job->salary_max) }}</td>
                     <td>{{ $job->categoryData->name ?? 'N/A' }}</td>
-                     <td>{{ \Illuminate\Support\Str::limit($job->description, 10, '...') }}</td>
+                     <td>{!! \Illuminate\Support\Str::limit($job->description, 10, '...') !!}</td>
                     <td><span class="badge badge-info">{{ $job->job_type }}</span></td>
                     <td>
                         @if($job->status == 1)
@@ -127,7 +127,7 @@
                     <td>
                      @if(auth()->check() && auth()->user()->role == 'candidate')
 
-                       <a href="{{ url('jobs/'.$job->id) }}">Apply Now  </a>
+                       <a href="{{ url('jobs/'.$job->id) }}"  class="btn btn-primary btn-sm">Apply Now  </a>
 
                      @endif
                      </td>
