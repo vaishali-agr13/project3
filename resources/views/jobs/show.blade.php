@@ -19,7 +19,7 @@
     </a>
 
     <a href="https://chat.whatsapp.com/H4PArHFPz8L0W4L3msdTKP" target="_blank"
-       style="display:block; margin-top:10px; background:#0049af; color:white; padding:10px; border-radius:5px; text-decoration:none;">
+       style="display:block; margin-top:10px; background:#76ac20; color:white; padding:10px; border-radius:5px; text-decoration:none;">
         Join Community
     </a>
 
@@ -84,7 +84,7 @@
                         
                     </div>
 
-                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                    <div class="prose max-w-none text-gray-700 leading-relaxed break-words overflow-hidden">
                         <h3 class="text-xl font-bold text-gray-900 mb-4">Job Description</h3>
                             {!! html_entity_decode($job->description) !!}
                         
@@ -126,7 +126,7 @@
                             {{$job->no_of_openings}}
                     </div>
 
-                    <button type="button" onclick="toggleApplyForm()" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg ml-auto block transition">
+                    <button type="button" onclick="toggleApplyForm()" class="bg-lime-600  text-white px-4 py-2 rounded-lg ml-auto block transition">
                        Apply Now
                     </button>
 
@@ -187,7 +187,7 @@
                             placeholder="Why are you a good fit?"></textarea>                        
                         </div>
 
-                        <button type="submit" class="w-full text-white font-bold submit-btn py-3 rounded-lg hover:bg-blue-700 shadow-lg transform active:scale-95 transition duration-200">
+                        <button type="submit" class="w-full text-white font-bold submit-btn py-3 rounded-lg hover:bg-lime-600 shadow-lg transform active:scale-95 transition duration-200">
                             Submit Application
                         </button>
                     </form>

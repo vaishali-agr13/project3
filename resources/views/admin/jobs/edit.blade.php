@@ -15,12 +15,12 @@
 
             <div class="form-group">
                 <label>Job Title</label>
-                <input type="text" name="title" class="form-control" value="{{ $job->title }}">
+                <input type="text" name="title" class="form-control" value="{{ $job->title }}" required>
             </div>
 
             <div class="form-group">
                 <label>Category</label>
-                <select name="category" class="form-control">
+                <select name="category" class="form-control" required>
                     @foreach($categories as $cat)
                         <option value="{{ $cat->id }}"
                             {{ $job->category == $cat->id ? 'selected' : '' }}>
@@ -32,17 +32,17 @@
 
             <div class="form-group">
                 <label>Company</label>
-                <input type="text" name="company_name" class="form-control" value="{{ $job->company_name }}">
+                <input type="text" name="company_name" class="form-control" value="{{ $job->company_name }}" required>
             </div>
 
             <div class="form-group">
                 <label>Company Email</label>
-                <input type="text" name="company_email" class="form-control" value="{{ $job->company_email }}">
+                <input type="text" name="company_email" class="form-control" value="{{ $job->company_email }}" required>
             </div>
 
             <div class="form-group">
                 <label>Location</label>
-                <input type="text" name="location" class="form-control" value="{{ $job->location }}">
+                <input type="text" name="location" class="form-control" value="{{ $job->location }}" required>
             </div>
 
            <div class="form-group">
@@ -52,12 +52,12 @@
 
              <div class="form-group">
                 <label>No Of Openings</label>
-                <input type="text" name="no_of_openings" class="form-control" value="{{ $job->no_of_openings }}">
+                <input type="text" name="no_of_openings" class="form-control" value="{{ $job->no_of_openings }}" required>
             </div>
 
             <div class="form-group">
                 <label>Who Can Apply</label>
-                <input type="text" name="who_can_apply" class="form-control" value="{{ $job->who_can_apply }}">
+                <input type="text" name="who_can_apply" class="form-control" value="{{ $job->who_can_apply }}" required>
             </div>
 
 
@@ -68,7 +68,7 @@
             @endphp -->
            <div class="form-group">
                 <label>Skills Required</label>              
-                 <input type="text" name="skills_required" class="form-control" value="{{ $job->skills_required }}">
+                 <input type="text" name="skills_required" class="form-control" value="{{ $job->skills_required }}" required>
 
 
                 <!-- <select name="skills_required[]" multiple class="form-control">
@@ -82,22 +82,22 @@
             
             <div class="form-group">
                 <label>Min Salary</label>
-                <input type="text" name="salary_min" class="form-control" value="{{ $job->salary_min }}">
+                <input type="text" name="salary_min" class="form-control" value="{{ $job->salary_min }}" required>
             </div>
 
             <div class="form-group">
                 <label>Max Salary</label>
-                <input type="text" name="salary_max" class="form-control" value="{{ $job->salary_max }}">
+                <input type="text" name="salary_max" class="form-control" value="{{ $job->salary_max }}" required>
             </div>
 
             <div class="form-group">
                 <label>Experience</label>
-                <input type="text" name="experience" class="form-control" value="{{ $job->experience }}">
+                <input type="text" name="experience" class="form-control" value="{{ $job->experience }}" required>
             </div>
 
             <div class="form-group">
                 <label>Job Type</label>
-                <select name="job_type" class="form-control">
+                <select name="job_type" class="form-control" required>
                     <option {{ $job->job_type == 'Full-time' ? 'selected' : '' }}>Full-time</option>
                     <option {{ $job->job_type == 'Part-time' ? 'selected' : '' }}>Part-time</option>
                 </select>
@@ -105,7 +105,7 @@
 
             <div class="form-group">
                 <label>Description</label>
-                <textarea name="description" class="form-control">{!! $job->description !!}</textarea>
+                <textarea name="description" class="form-control" required>{!! $job->description !!}</textarea>
             </div>
 
             <div class="form-group">
