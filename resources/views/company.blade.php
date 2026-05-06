@@ -113,8 +113,10 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1">
                       Skills Required
                   </label>
+                  <input type="text" name="skills_required" class="w-full px-4 py-2 border rounded-lg" placeholder="No of Openings" required>
 
-                  <div class="border rounded-lg p-3 bg-gray-50">
+
+                  <!-- <div class="border rounded-lg p-3 bg-gray-50">
                       <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
 
                           <label class="flex items-center space-x-2">
@@ -143,7 +145,7 @@
                           </label>
 
                       </div>
-                  </div>
+                  </div> -->
               </div>
               
 
@@ -172,7 +174,7 @@
               <textarea name="description" rows="4" class="w-full px-4 py-2 border rounded-lg" required></textarea>
             </div>
 
-            <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-lg font-bold transition">
+            <button type="submit" class="w-full bg-lime-600  text-white py-3 rounded-lg font-bold transition">
                Post Job
             </button>
           </form>
