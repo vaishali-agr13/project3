@@ -26,6 +26,7 @@
                     <th>Phone</th>
                     <th>Skills</th>
                     <th>Experience</th>
+                    <th>Location</th>
                     <th>Education</th>
                     <th>Resume</th>
                     <th>Registered On</th>
@@ -41,6 +42,7 @@
                         <td>{{ $candidate->profile->phone ?? 'N/A' }}</td>
                         <td>{{ $candidate->profile->skills ?? 'N/A' }}</td>
                         <td>{{ $candidate->profile->experience ?? 'N/A' }}</td>
+                        <td>{{ $candidate->profile->location ?? 'N/A' }}</td>
                         <td>{{ $candidate->profile->education ?? 'N/A' }}</td>
                         <td>
                             <a href="{{ asset('storage/' . optional($candidate->profile)->resume) }}" target="_blank" class="btn btn-sm btn-outline-danger">

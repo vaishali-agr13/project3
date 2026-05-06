@@ -19,6 +19,7 @@ class CandidateProfile extends Model
         'education',
         'resume',
         'portfolio',
+        'location',
     ];
 
     public function user()

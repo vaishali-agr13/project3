@@ -134,6 +134,11 @@ class JobController extends Controller
     }
 
 
+    public function applyForm($id){
+            $job = Job::with('categoryData')->findOrFail($id);
+            return view('jobs.apply-job', compact('job'));
+    }
+
     public function updateApplicationStatus(Request $request, $id)
         {
             $application = Application::findOrFail($id);

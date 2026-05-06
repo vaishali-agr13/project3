@@ -11,10 +11,12 @@
     <div class="popup-content">
         <h3>✅ Your application submitted successfully</h3>
         <p>Please complete your profile</p>
+        <p class="text-sm text-gray-600">Login details have been sent to your email ID successfully.</p>
         <button onclick="closePopup()">OK</button>
     </div>
 </div>
 @endif
+
 
 
     <section class="content-header">
@@ -77,6 +79,26 @@
                             <input type="text" name="skills" class="form-control" value="{{ $profile->skills ?? '' }}" required>
                         </div>
 
+                        <div class="form-group w-full block mb-4">
+                            <label class="block mb-1 font-semibold text-gray-700">
+                                Location
+                            </label>
+
+                            <div class="w-full">
+                                <select name="location"
+                                    class="w-full block px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                                    <option value="">Select Location</option>
+
+                                    @foreach($cities as $city)
+                                        <option value="{{ $city }}"
+                                            {{ $profile->location == $city ? 'selected' : '' }}>
+                                            {{ $city }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label>Experience</label>
                             <input type="text" name="experience" class="form-control" value="{{ $profile->experience ?? '' }}" required>
@@ -121,6 +143,7 @@
 
 
 @endsection
+
 
 
 @section('css')

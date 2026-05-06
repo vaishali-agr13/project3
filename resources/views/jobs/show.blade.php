@@ -31,9 +31,9 @@
 
 <div class="bg-gray-100 min-h-screen py-10">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-wrap lg:flex-nowrap -mx-4">
+        <div class="flex flex-wrap lg:flex-nowrap -mx-4 justify-center">
         
-            <div class="w-full lg:w-2/3 px-4 mb-8">
+            <div class="w-full lg:w-2/3 px-4 mb-8 mx-auto">
                 <div class="bg-white p-8 rounded-xl shadow-sm">
                     <div class="flex items-center justify-between mb-6">
                         <div>
@@ -95,143 +95,54 @@
                             <li>Ability to work in a fast-paced environment.</li>
                         </ul> -->
                     </div>
-                    <div class="prose max-w-none text-gray-700 leading-relaxed" >
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Roles & Responsibilities</h3>
-                            {{$job->roles_responsibility}}
-                    </div>
+                     @if(!empty($job->roles_responsibility) && $job->roles_responsibility != 'NA')
 
-                    <div class="prose max-w-none text-gray-700 leading-relaxed" > 
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Skills Required</h3>
-                
-                             {{$job->skills_required}}
-                           <!-- @php
-                                $skills = is_string($job->skills_required)
-                                    ? json_decode($job->skills_required, true)
-                                    : $job->skills_required;
-                            @endphp
-
-                            @if(is_array($skills))
-                                @foreach($skills as $skill)
-                                    <span>{{ $skill }},</span>
-                                @endforeach
-                            @endif -->
-                    </div>
-
-                    <div class="prose max-w-none text-gray-700 leading-relaxed">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Who can apply</h3>
-                            {{$job->who_can_apply}}
-                    </div>
-
-                    <div class="prose max-w-none text-gray-700 leading-relaxed">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Number of openings</h3>
-                            {{$job->no_of_openings}}
-                    </div>
-
-                    <button type="button" onclick="toggleApplyForm()" class="bg-lime-600  text-white px-4 py-2 rounded-lg ml-auto block transition">
-                       Apply Now
-                    </button>
-
-                </div>
-                
-            </div>
-
-            <div class="w-full lg:w-1/3 px-4">
-                <div id="applyForm" class="hidden mt-4 bg-white p-6 rounded-xl shadow-md border-t-4 custom-border sticky top-10">
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Apply Now</h3>
-                    
-                    @if(session('success'))
-                        <div class="bg-green-50 text-green-700 p-4 rounded-lg mb-4 text-sm font-medium">
-                            ✅ {{ session('success') }}
+                        <div class="prose max-w-none text-gray-700 leading-relaxed" >
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Roles & Responsibilities</h3>
+                                {{$job->roles_responsibility}}
                         </div>
                     @endif
 
-                    <form action="{{ route('jobs.apply', $job->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-                        @csrf
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
-                            <input type="text" name="full_name"
-                            class="w-full px-4 py-2 border rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
-                            placeholder="John Doe" required>                       
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
-                            <input type="email" name="email"
-                            class="w-full px-4 py-2 border rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
-                            placeholder="john@example.com" required>                        
-                        </div>
-
-                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
-                            <input type="number" name="phone"
-                            class="w-full px-4 py-2 border rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
-                            placeholder="Enter Phone No" required>                        
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Resume (PDF)</label>
-                            <div class="border-2 border-dashed border-gray-300 p-4 rounded-lg text-center hover:border-blue-500 transition cursor-pointer">
-                                <input type="file" name="resume" accept=".pdf" class="hidden" id="resumeUpload" required>
-                                <p id="file-name"></p>
-
-                                <label for="resumeUpload" class="cursor-pointer text-gray-500">
-                                    <i class="fas fa-cloud-upload-alt text-2xl mb-2 block"></i>
-                                    <span class="text-sm">Click to upload PDF</span>
-                                </label>
+                        @if(!empty($job->skills_required) && $job->skills_required != 'NA')
+                            <div class="prose max-w-none text-gray-700 leading-relaxed">
+                                <h3 class="text-xl font-bold text-gray-900 mb-4">Skills Required</h3>
+                                {{ $job->skills_required }}
                             </div>
-                        </div>
+                        @endif
 
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Cover Letter (Optional)</label>
-                            <textarea name="cover_letter" rows="3"
-                            class="w-full px-4 py-2 border rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
-                            placeholder="Why are you a good fit?"></textarea>                        
-                        </div>
+                        @if(!empty($job->who_can_apply) && $job->who_can_apply != 'NA')
+                            <div class="prose max-w-none text-gray-700 leading-relaxed">
+                                <h3 class="text-xl font-bold text-gray-900 mb-4">Who can apply</h3>
+                                {{ $job->who_can_apply }}
+                            </div>
+                        @endif
 
-                        <button type="submit" class="w-full text-white font-bold submit-btn py-3 rounded-lg hover:bg-lime-600 shadow-lg transform active:scale-95 transition duration-200">
-                            Submit Application
-                        </button>
-                    </form>
+                        @if(!empty($job->no_of_openings)&& $job->no_of_openings != '0')
+                            <div class="prose max-w-none text-gray-700 leading-relaxed">
+                                <h3 class="text-xl font-bold text-gray-900 mb-4">Number of openings</h3>
+                                {{ $job->no_of_openings }}
+                            </div>
+                        @endif
 
-                    <p class="text-xs text-gray-500 mt-4 text-center">
-                        By clicking Apply, you agree to our Terms of Service.
-                    </p>
+                   
+                    
+                    <a href="{{ route('jobs.apply.form', $job->id) }}"
+                    class="bg-lime-600 text-white px-4 py-2 rounded-lg ml-auto block w-fit">
+                        Apply Now
+                    </a>
+                    <!-- <button type="button" class="bg-lime-600  text-white px-4 py-2 rounded-lg ml-auto block transition">
+                       Apply Now
+                    </button> -->
+
                 </div>
+                
             </div>
+
+           
 
         </div>
     </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
- console.log('event outside');
-    const input = document.getElementById('resumeUpload');
-    const fileText = document.getElementById('file-name');
 
-    input.addEventListener('change', function(e) {
-        console.log('event inside');
-        fileText.innerText = e.target.files.length > 0 
-            ? e.target.files[0].name 
-            : 'No file selected';
-    });
-
-});
-
-   function toggleApplyForm() {
-        const form = document.getElementById('applyForm');
-        form.classList.toggle('hidden');
-    }
-
-</script>
 @endsection
-@push('scripts')
-
-@endpush
-<!--@if(session('success'))
-// <script>
-//     window.onload = function() {
-//         document.getElementById('thankPopup').style.display = 'block';
-//     }
-// </script>
-@endif-->

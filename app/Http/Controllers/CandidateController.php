@@ -10,6 +10,8 @@ use App\Models\CandidateProfile;
 use App\Models\Application;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+
 
 class CandidateController extends Controller
 {
@@ -132,7 +134,13 @@ class CandidateController extends Controller
      public function index()
     {
         $profile = CandidateProfile::where('user_id', auth()->id())->first();
-        return view('candidate.profile', compact('profile'));
+
+        $response = Http::post('https://countriesnow.space/api/v0.1/countries/cities', [
+               "country" => "India"
+        ]);
+
+        $cities = $response->json()['data'];
+        return view('candidate.profile', compact('profile','cities'));
     }
 
     public function store(Request $request)
@@ -145,6 +153,7 @@ class CandidateController extends Controller
             'name'=>'required',
             'profile_photo'=>'required',
             'email'=>'required',
+            'location'=>'required',
              'resume' => 'nullable|mimes:pdf|max:2048',
             'portfolio'=>'required',
         ]);
@@ -174,6 +183,7 @@ class CandidateController extends Controller
                 'portfolio' => $request->portfolio,
                 'resume' => $resumePath,
                 'phone' => $request->phone,
+                'location'=>$request->location,
                 'skills' => $request->skills,
                 'experience' => $request->experience,
                 'education' => $request->education,

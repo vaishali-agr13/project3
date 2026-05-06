@@ -11,6 +11,28 @@
         </style>
 </head>
 
+
+@if(session('pending_apply'))
+<div id="applyPopup" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
+    
+    <div style="background:white; width:350px; padding:20px; border-radius:10px; text-align:center; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">
+        
+        <h3 style="margin-bottom:10px;">Complete Your Application</h3>
+        <p style="font-size:14px; color:#555;">
+            You were applying for a job. Please complete registration to continue.
+        </p>
+
+      
+
+        <button onclick="closePopup()" 
+            style="margin-top:10px; background:#ccc; padding:8px 12px; border:none; border-radius:5px;">
+            Ok
+        </button>
+
+    </div>
+</div>
+@endif
+
 <body class="hold-transition register-page" style="background: linear-gradient(135deg, #667eea, #764ba2);">
 
 <div class="register-box">
@@ -68,3 +90,9 @@
 
 </body>
 </html>
+
+<script>
+function closePopup() {
+    document.getElementById('applyPopup').style.display = 'none';
+}
+</script>
