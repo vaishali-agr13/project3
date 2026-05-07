@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\JobController;
 use App\Models\CandidateProfile;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\Profile;
+use App\Models\User;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -230,4 +236,83 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
+
+       public function showForgotForm()
+    {
+        return view('auth.forgot-password');
+    }
+
+    // Send reset link
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email'
+        ]);
+
+        $token = Str::random(64);
+
+        DB::table('password_reset_tokens')->updateOrInsert(
+            ['email' => $request->email],
+            [
+                'token' => Hash::make($token),
+                'created_at' => Carbon::now()
+            ]
+        );
+
+        $resetLink = url('/reset-password/'.$token.'?email='.$request->email);
+
+        Mail::raw("Click here to reset password: ".$resetLink, function ($message) use ($request) {
+            $message->to($request->email)
+                    ->subject('Reset Password');
+        });
+
+        return back()->with('success', 'Reset link sent to your email.');
+    }
+
+    // Show reset password form
+    public function showResetForm(Request $request, $token)
+    {
+        return view('auth.reset-password', [
+            'token' => $token,
+            'email' => $request->email
+        ]);
+    }
+
+    // Reset password
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6|confirmed',
+            'token' => 'required'
+        ]);
+
+        $resetData = DB::table('password_reset_tokens')
+                        ->where('email', $request->email)
+                        ->first();
+
+        if (!$resetData) {
+            return back()->withErrors(['email' => 'Invalid reset request']);
+        }
+
+        // Check token
+        if (!Hash::check($request->token, $resetData->token)) {
+            return back()->withErrors(['token' => 'Invalid token']);
+        }
+
+        // Update password
+        $updated = User::where('email', $request->email)
+            ->update([
+                'password' => Hash::make($request->password)
+            ]);
+
+
+        // Delete token
+        DB::table('password_reset_tokens')
+            ->where('email', $request->email)
+            ->delete();
+
+        return redirect('/candidate/login')->with('success', 'Password reset successful.');
+    }
+
 }

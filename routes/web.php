@@ -84,7 +84,13 @@ Route::get('/about', function () { return view('about'); });
 
 Route::post('/jobs/{id}/apply', [JobController::class, 'apply'])->name('jobs.apply');
 
-// Route::post('jobs/{id}/apply', [JobController::class, 'apply'])
-//     ->middleware('auth')
-//     ->name('jobs.apply');
+Route::get('/forgot-password', [AuthController::class, 'showForgotForm']);
+
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
+        ->name('forgot.password');
+
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm']);
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+        ->name('reset.password');
 

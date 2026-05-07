@@ -83,8 +83,17 @@
 
             </form>
 
+            <div class="row mt-2">
+                <div class="col-12 text-right">
+                        <a href="{{ url('/forgot-password') }}">
+                            Forgot Password?
+                        </a>
+                  
+                </div>
+            </div>
 
-            <p class="mb-1 text-center">
+
+            <p class="mb-1 text-left">
                 <a href="{{ url('/candidate/register') }}">Create a new account</a>
             </p>
 
