@@ -7,7 +7,7 @@
 @section('content')
 
 @if(session('success'))
-<div id="popup" class="popup">
+<div id="popup" class="custom-popup">
     <div class="popup-content">
         <h3>✅ Your application submitted successfully</h3>
         <p>Please complete your profile</p>
@@ -28,11 +28,7 @@
     <section class="content">
         <div class="container-fluid">
 
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+            
 
             @if ($errors->any())
                 <div style="color:red;">
@@ -144,35 +140,10 @@
 
 @endsection
 
-
-@section('css')
-<style>
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0,0,0,0.6);
-  z-index: 99999;
-}
-
-.popup-content {
-  background: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  text-align: center;
-}
-</style>
-@endsection
-
-@section('js')
+@push('js')
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    let popup = document.getElementById('popup');
+    const popup = document.getElementById('popup');
 
     if (popup) {
         popup.style.display = 'flex';
@@ -180,10 +151,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function closePopup() {
-    let popup = document.getElementById('popup');
+    const popup = document.getElementById('popup');
     if (popup) {
         popup.style.display = 'none';
     }
 }
 </script>
-@endsection
+
+@endpush
+
+<style>
+
+.custom-popup {
+  position: fixed;
+  inset: 0;
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  z-index: 99999;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+</style>
