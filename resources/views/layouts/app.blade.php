@@ -151,6 +151,12 @@
             <a href="/find-jobs" class="block px-4 py-2 hover:bg-gray-100">Find a Job</a>
             <a href="/companies" class="block px-4 py-2 hover:bg-gray-100">Post Job</a>
 
+            @if(auth()->check() && auth()->user()->role === 'candidate')
+                <a href="/candidate/dashboard" class="block px-4 py-2 hover:bg-gray-100">
+                    Dashboard
+                </a>
+            @endif
+
             @if(auth()->check())
                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                    class="block px-4 py-2 hover:bg-gray-100">Logout</a>
