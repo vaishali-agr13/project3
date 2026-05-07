@@ -200,7 +200,6 @@ class JobController extends Controller
         }
         else {
                Mail::to( $job->company_email)
-                ->cc('rjindia.help@gmail.com')
                 ->send(new JobPostedMail($job));
 
             
