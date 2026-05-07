@@ -55,7 +55,7 @@
                             placeholder="Why are you a good fit?"></textarea>                        
                         </div>
 
-                        <button type="submit" class="w-full text-white font-bold submit-btn py-3 rounded-lg hover:bg-lime-600 shadow-lg transform active:scale-95 transition duration-200">
+                        <button type="submit" class="w-full text-white font-bold submit-btn py-3 rounded-lg shadow-lg transform active:scale-95 transition duration-200">
                             Submit Application
                         </button>
                     </form>

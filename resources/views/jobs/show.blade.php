@@ -125,11 +125,12 @@
                         @endif
 
                    
-                    
-                    <a href="{{ route('jobs.apply.form', $job->id) }}"
-                    class="bg-lime-600 text-white px-4 py-2 rounded-lg ml-auto block w-fit">
-                        Apply Now
-                    </a>
+                    <div class="flex justify-end">
+                        <a href="{{ route('jobs.apply.form', $job->id) }}"
+                        class="bg-[#0049af] text-white py-3 px-6 rounded-lg font-bold">
+                            Apply Now
+                        </a>
+                    </div>
                     <!-- <button type="button" class="bg-lime-600  text-white px-4 py-2 rounded-lg ml-auto block transition">
                        Apply Now
                     </button> -->
