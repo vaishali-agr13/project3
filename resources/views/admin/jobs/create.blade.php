@@ -84,7 +84,7 @@
                          <div class="col-md-6">
                             <div class="form-group">
                                 <label for="company_name">Company Email</label>
-                                <input type="text" name="company_email" class="form-control" placeholder="e.g. Google" value="{{ old('company_email') }}" required>
+                                <input type="email" name="company_email" class="form-control" placeholder="e.g. Google" value="{{ old('company_email') }}" required>
                             </div>
                         </div>
                        
