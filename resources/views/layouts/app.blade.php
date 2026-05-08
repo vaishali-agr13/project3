@@ -23,21 +23,21 @@
     <a href="https://www.facebook.com/share/1AjicM8ZoD"><i class="fa-brands fa-facebook-f"></i></a>
     <a href="https://x.com/"><i class="fa-brands fa-twitter"></i></a>
     <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href="https://www.instagram.com/rjindiajobs?utm_source=qr&igsh=MWpxZTd2aGc3YTk1ZA=="><i class="fa-brands fa-instagram"></i></a>
+    <a href="#"><i class="fa-brands fa-instagram"></i></a>
   </div>
 
   <!-- RIGHT: CONTACT INFO -->
   <div class="top-right">
     <span>
-      <a href="https://wa.me/919039023534" target="_blank">
+      <a href="https://wa.me/917455677890" target="_blank">
            <i class="fa-brands fa-whatsapp"></i> 
-           {{ $profile->phone ?? '+91 9039023534' }}
+           {{ $profile->phone ?? '+91 7455677890' }}
            
       </a>
      </span>
     <span>
-       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@rjindiajobs.com" target="_blank">
-           <i class="fa-regular fa-envelope"></i>  {{ $profile->email ?? 'info@rjindiajobs.com ' }}
+       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@fkstrategyindia.com" target="_blank">
+           <i class="fa-regular fa-envelope"></i>  {{ $profile->email ?? 'info@fkstrategyindia.com ' }}
        </a>
     </span>
   </div>
@@ -52,9 +52,7 @@
         <img src="{{ asset('images/company-logo.png') }}"  class="company_logo"  alt="Resume Tips">
 
             <div class="flex flex-col leading-tight">
-                <!-- <span class="font-bold text-[#0049af] text-lg" style="margin-left:29px;">
-               RJ India
-                </span> -->
+                
                
           </div>
     </a>
@@ -207,13 +205,13 @@
     <!-- COLUMN 4 -->
     <div class="footer-col">
       <h5>Contact</h5>
-      <p> <a href="https://wa.me/919039023534" target="_blank">
-           <i class="fa-brands fa-whatsapp"></i> {{ $profile->phone ?? '+91 9039023534' }}
+      <p> <a href="https://wa.me/91768898989" target="_blank">
+           <i class="fa-brands fa-whatsapp"></i> {{ $profile->phone ?? '+91 7566977678' }}
           </a>
       </p>
       <p>
-         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@rjindiajobs.com" target="_blank">
-           <i class="fa-regular fa-envelope"></i>  {{ $profile->email ?? 'info@rjindiajobs.com ' }}
+         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@fkstrategy.com" target="_blank">
+           <i class="fa-regular fa-envelope"></i>  {{ $profile->email ?? 'info@fkstrategy.com ' }}
          </a>
       </p>
 
@@ -229,6 +227,14 @@
   <!-- BOTTOM BAR -->
   <div class="footer-bottom">
     <p>© 2026 JobPortal. All rights reserved.</p>
+
+    <p class="mt-2 md:mt-0">
+                Designed by 
+                <a href="#"
+                   class="font-bold text-blue-600 hover:text-blue-700 transition duration-300">
+                   VipDigital Hub
+                </a>
+    </p>
   </div>
 
 

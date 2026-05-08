@@ -116,36 +116,37 @@
 
                   <input type="hidden" name="category" :value="selected">
 
-                  <div x-show="open" 
-                      @click.away="open = false"
-                      x-cloak
-                      x-transition:enter="transition ease-out duration-100"
-                      x-transition:enter-start="opacity-0 scale-95"
-                      x-transition:enter-end="opacity-100 scale-100"
-                      class="absolute left-0 top-full mt-2 w-64 bg-white border border-gray-100 rounded-xl shadow-2xl z-50">
-                      
-                      <div x-show="open" x-transition class="category-dropdown">
-                          <div @click="selected = ''; open = false" 
-                              class="px-4 py-2 text-xs text-gray-400 hover:bg-gray-50 cursor-pointer rounded-lg mb-1">
-                              None (Clear)
-                          </div>
-
-                          @foreach($categories as $category)
-                              <div @click="selected = '{{ $category->name }}'; open = false" 
-                                  class="flex items-center justify-between px-4 py-2.5 hover:bg-blue-50 rounded-lg cursor-pointer transition group"
-                                  :class="selected === '{{ $category->name }}' ? 'bg-blue-50' : ''">
-                                  
-                                  <span class="text-gray-600 group-hover:text-blue-600 font-medium text-sm">{{ $category->name }}</span>
-                                  
-                                  <template x-if="selected === '{{ $category->name }}'">
-                                      <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                                          <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path>
-                                      </svg>
-                                  </template>
-                              </div>
-                          @endforeach
-                      </div>
+                            <div x-show="open" 
+              @click.away="open = false"
+              x-cloak
+              x-transition:enter="transition ease-out duration-100"
+              x-transition:enter-start="opacity-0 scale-95"
+              x-transition:enter-end="opacity-100 scale-100"
+              /* Added 'text-left' to align text and 'md:left-0' for desktop */
+              class="absolute left-0 right-0 md:right-auto md:left-0 top-full mt-2 w-full md:w-64 bg-white border border-gray-100 rounded-xl shadow-2xl z-50 text-left">
+              
+              <div x-show="open" x-transition class="category-dropdown p-1"> <div @click="selected = ''; open = false" 
+                      class="px-4 py-2 text-xs text-gray-400 hover:bg-gray-50 cursor-pointer rounded-lg mb-1">
+                      None (Clear)
                   </div>
+
+                  @foreach($categories as $category)
+                      <div @click="selected = '{{ $category->name }}'; open = false" 
+                          /* 'text-left' ensures the name stays on the left */
+                          class="flex items-center justify-between px-4 py-2.5 hover:bg-blue-50 rounded-lg cursor-pointer transition group text-left"
+                          :class="selected === '{{ $category->name }}' ? 'bg-blue-50' : ''">
+                          
+                          <span class="text-gray-600 group-hover:text-blue-600 font-medium text-sm">{{ $category->name }}</span>
+                          
+                          <template x-if="selected === '{{ $category->name }}'">
+                              <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path>
+                              </svg>
+                          </template>
+                      </div>
+                  @endforeach
+              </div>
+          </div>
            </div>
                 <button type="submit">Search</button>
         </div>
@@ -201,7 +202,7 @@
 
     <!-- RIGHT IMAGE -->
     <div class="right-image">
-      <img src="{{ asset('images/job-seekers.webp') }}" alt="job illustration">
+      <img src="{{ asset('images/job-seekers.png') }}" alt="job illustration">
     </div>
 
   </div>
@@ -213,63 +214,69 @@
 
   <div class="grid">
 
+    @forelse($featuredJobs as $job)
+        <div class="card job-card category-card position-relative">
 
-   @forelse($featuredJobs as $job)
-            <div class="card job-card category-card">
-                    @php
-                        $days = \Carbon\Carbon::parse($job->created_at)->diffInDays(now());
-                    @endphp
+            @php
+                $days = \Carbon\Carbon::parse($job->created_at)->diffInDays(now());
+            @endphp
 
-                    @if($days < 3)
-                        <img style="width:20px;height:20px;" src="{{ asset('images/new.gif') }}" class="company-logo">
+            @if($days < 3)
+                <img 
+                    style="width:20px;height:20px; position:absolute; top:10px; right:10px;" 
+                    src="{{ asset('images/new.gif') }}" 
+                    class="company-logo">
+            @endif
 
-                    @endif                   
-                  
-                    <h4>{{ $job->title }}</h4>
-                    <p>{{ $job->company_name }}</p>
-                    <p> {{ \Illuminate\Support\Str::limit($job->location, 10, '...') }}</p>
+            <!-- Center Content -->
+            <div class="text-center d-flex flex-column align-items-center justify-content-center h-100 pt-5">
 
-                    
+                <h4>{{ $job->title }}</h4>
 
-                   <a href="{{ route('jobs.show', $job->id) }}" class="block mt-4">
-                        <button class="apply-btn">View Details →</button>    
+                <p>{{ $job->company_name }}</p>
+
+                <p>{{ \Illuminate\Support\Str::limit($job->location, 10, '...') }}</p>
+
+                <a href="{{ route('jobs.show', $job->id) }}" class="block mt-4">
+                    <button class="apply-btn">View Details →</button>    
+                </a>
+
+            </div>
+
+            <div class="bottom-row">
+                <div class="share-icons">
+                    <a href="https://wa.me/?text={{ urlencode($job->title . ' ' . route('jobs.show', $job->id)) }}" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
                     </a>
 
-                    <div class="bottom-row">
-                        <div class="share-icons">
-                            <a href="https://wa.me/?text={{ urlencode($job->title . ' ' . route('jobs.show', $job->id)) }}" target="_blank">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('jobs.show', $job->id)) }}" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
 
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('jobs.show', $job->id)) }}" target="_blank">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-
-                        @php
-                           if (!function_exists('formatSalary')) {
-                                function formatSalary($amount) {
-                                    if ($amount >= 100000) {
-                                        return round($amount / 100000) . ' LPA';
-                                    } elseif ($amount >= 1000) {
-                                        return round($amount / 1000) . 'k';
-                                    }
-                                    return $amount;
-                                }   
+                @php
+                    if (!function_exists('formatSalary')) {
+                        function formatSalary($amount) {
+                            if ($amount >= 100000) {
+                                return round($amount / 100000) . ' LPA';
+                            } elseif ($amount >= 1000) {
+                                return round($amount / 1000) . 'k';
                             }
-                        @endphp
+                            return $amount;
+                        }   
+                    }
+                @endphp
 
-                        <div class="salary">
-                            ₹ {{ formatSalary($job->salary_min) }} - ₹{{ formatSalary($job->salary_max) }}
-                        </div>
-                    </div>
+                <div class="salary">
+                    ₹ {{ formatSalary($job->salary_min) }} - ₹{{ formatSalary($job->salary_max) }}
+                </div>
+            </div>
 
-                    
-          </div>
+        </div>
 
-           
-        @empty
-   @endforelse
+    @empty
+    @endforelse
+
   </div>
 </section>
 
@@ -305,7 +312,7 @@
   <div class="job-alert-container">
 
     <div class="job-alert-left">
-      <h2>Never miss out <span style="color: #0049af">on the latest career</span> opportunities</h2>
+      <h2>Never miss out <span style="color: #76ac20">on the latest career</span> opportunities</h2>
       
       <p>
         Get daily alerts and stay ahead!
@@ -327,7 +334,7 @@
 
 
 <!-- 🔹 WHATSAPP COMMUNITY SECTION -->
-<section class="py-16 text-white" style="background:#0049af; position:relative; z-index:1;">
+<section class="py-16 text-white" style="background:#76ac20; position:relative; z-index:1;">
     <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
 
     <!-- LEFT CONTENT -->
