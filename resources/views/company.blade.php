@@ -101,7 +101,7 @@
 
               <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">No Of Openings</label>
-                <input type="text" name="no_of_openings" class="w-full px-4 py-2 border rounded-lg" placeholder="No of Openings" required>
+                <input type="number" name="no_of_openings" min="1" step="1" class="w-full px-4 py-2 border rounded-lg" placeholder="No of Openings"  required>
               </div>
 
               <div>
