@@ -35,16 +35,28 @@
                             placeholder="Enter Phone No" required>                        
                         </div>
 
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Resume (PDF)</label>
-                            <div class="border-2 border-dashed border-gray-300 p-4 rounded-lg text-center hover:border-blue-500 transition cursor-pointer">
-                                <input type="file" name="resume" accept=".pdf" class="hidden" id="resumeUpload" required>
-                                <p id="file-name"></p>
+                         <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">
+                                Resume (PDF)
+                            </label>
 
-                                <label for="resumeUpload" class="cursor-pointer text-gray-500">
+                            <div class="border-2 border-dashed border-gray-300 p-4 rounded-lg text-center hover:border-blue-500 transition relative">
+
+                                <input 
+                                    type="file"
+                                    name="resume"
+                                    accept=".pdf"
+                                    id="resumeUpload"
+                                    required
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+
+                                <p id="file-name" class="mb-2 text-sm text-green-600"></p>
+
+                                <div class="text-gray-500 pointer-events-none">
                                     <i class="fas fa-cloud-upload-alt text-2xl mb-2 block"></i>
                                     <span class="text-sm">Click to upload PDF</span>
-                                </label>
+                                </div>
+
                             </div>
                         </div>
 
@@ -55,7 +67,7 @@
                             placeholder="Why are you a good fit?"></textarea>                        
                         </div>
 
-                        <button type="submit" class="w-full text-white font-bold submit-btn py-3 rounded-lg shadow-lg transform active:scale-95 transition duration-200">
+                        <button type="submit" class="w-full text-white font-bold submit-btn py-3 rounded-lg hover:bg-lime-600 shadow-lg transform active:scale-95 transition duration-200">
                             Submit Application
                         </button>
                     </form>
