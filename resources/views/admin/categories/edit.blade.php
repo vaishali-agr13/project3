@@ -150,6 +150,7 @@
                     name="description" 
                     class="form-control" 
                     rows="4"
+                    required
                 >{!! $category->description !!}</textarea>
 
                 @error('description')

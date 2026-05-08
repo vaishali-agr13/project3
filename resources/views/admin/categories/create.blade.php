@@ -191,7 +191,7 @@
                 <textarea 
                     name="description" 
                     class="form-control" 
-                    rows="4"
+                    rows="4" required
                     placeholder="Enter category description"
                 ></textarea>
 

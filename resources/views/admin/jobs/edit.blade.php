@@ -51,8 +51,8 @@
             </div>
 
              <div class="form-group">
-                <label>No Of Openings</label>
-                <input type="text" name="no_of_openings" class="form-control" value="{{ $job->no_of_openings }}" required>
+                <label>No Of Openings</label>            
+                <input type="number" name="no_of_openings" min="1" step="1" class="form-control" placeholder="No of Openings" value="{{ $job->no_of_openings }}" required>
             </div>
 
             <div class="form-group">

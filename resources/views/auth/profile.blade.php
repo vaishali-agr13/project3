@@ -31,6 +31,7 @@
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text"
+                                   required
                                    name="name"
                                    class="form-control"
                                    placeholder="Enter Name"
@@ -40,6 +41,7 @@
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email"
+                                  required
                                    name="email"
                                    class="form-control"
                                    placeholder="Enter Email"
@@ -50,6 +52,7 @@
                             <label>Phone</label>
                             <input type="text"
                                    name="phone"
+                                   required
                                    class="form-control"
                                    placeholder="Enter Phone"
                                    value="{{ old('phone', $profile->phone ?? '') }}">
@@ -66,6 +69,7 @@
                                         <img src="{{ asset('storage/profiles/'.$profile->logo) }}"
                                             width="80"
                                             height="80"
+                                            required
                                             style="object-fit: cover; border-radius: 10px;">
                                     </div>
                                 @endif
