@@ -95,7 +95,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="salary">Salary Min</label>
-                                <input type="text" name="salary_min" class="form-control" placeholder="e.g. 50000" value="{{ old('salary_min') }}" required>
+                                <input type="text" id="salary_min" name="salary_min" class="form-control" placeholder="e.g. 50000" value="{{ old('salary_min') }}" required>
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="salary">Salary Max</label>
-                                <input type="text" name="salary_max" class="form-control" placeholder="e.g. 600000 "value="{{ old('salary_max') }}" required>
+                                <input type="text" id="salary_max" name="salary_max" class="form-control" placeholder="e.g. 600000 "value="{{ old('salary_max') }}" required>
                             </div>
                         </div>
 
@@ -202,7 +202,7 @@
 
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary px-4">Publish Job</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary px-4">Publish Job</button>
                     <a href="{{ url()->previous() }}" class="btn btn-default float-right">Cancel</a>
                 </div>
             </form>
@@ -240,10 +240,9 @@
     }, 3000);
 
     // CKEditor init
-     CKEDITOR.replace('description', {
+      CKEDITOR.replace('description', {
         versionCheck: false
     });
-
 
 
 
@@ -260,5 +259,33 @@
 
             return true;
     }
+
+
+document.getElementById("submitBtn").addEventListener("click", function(e){
+
+    let minSalary = document.getElementById("salary_min").value.replace(/,/g,'');
+
+    let maxSalary = document.getElementById("salary_max").value.replace(/,/g,'');
+
+    if(minSalary === "" || maxSalary === "" || minSalary == 0 || maxSalary == 0){
+
+        e.preventDefault();
+
+        alert("Salary fields can not be null");
+
+        return false;
+    }
+
+    if(parseInt(minSalary) > parseInt(maxSalary)){
+
+        e.preventDefault();
+
+        alert("Minimum salary can not be greater than maximum salary");
+
+        return false;
+    }
+
+});
+
 </script>
 @stop

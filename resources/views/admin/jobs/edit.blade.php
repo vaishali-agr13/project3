@@ -10,8 +10,9 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route('jobs.update', $job->id) }}" method="POST">
+        <form action="{{ route('jobs.update', $job->id) }}" id="jobForm" method="POST">
             @csrf
+
 
             <div class="form-group">
                 <label>Job Title</label>
@@ -37,7 +38,7 @@
 
             <div class="form-group">
                 <label>Company Email</label>
-                <input type="text" name="company_email" class="form-control" value="{{ $job->company_email }}" required>
+                <input type="email" name="company_email" class="form-control" value="{{ $job->company_email }}" required>
             </div>
 
             <div class="form-group">
@@ -69,13 +70,16 @@
             
             <div class="form-group">
                 <label>Min Salary</label>
-                <input type="text" name="salary_min" class="form-control" value="{{ $job->salary_min }}" required>
+                <input type="text" name="salary_min" id="salary_min" class="form-control" value="{{ $job->salary_min }}" required>
             </div>
 
             <div class="form-group">
                 <label>Max Salary</label>
-                <input type="text" name="salary_max" class="form-control" value="{{ $job->salary_max }}" required>
+                <input type="text" name="salary_max" id="salary_max" class="form-control" value="{{ $job->salary_max }}" required>
             </div>
+
+            <span id="salary-error" style="color:red;"></span>
+
 
             <div class="form-group">
                 <label>Experience</label>
@@ -106,9 +110,50 @@
             <input type="hidden" name="posted_by_type" value="admin">
             <input type="hidden" name="from" value="{{ $from }}">
 
-            <button class="btn btn-primary mt-3">Update Job</button>
+            <button type="submit" id="submitBtn" class="btn btn-primary mt-3">Update Job</button>
         </form>
     </div>
 </div>
 
+
+
 @endsection 
+
+@section('js')
+
+<script>
+
+document.getElementById("submitBtn").addEventListener("click", function(e){
+
+    let minSalary = document.getElementById("salary_min").value.replace(/,/g,'');
+
+    let maxSalary = document.getElementById("salary_max").value.replace(/,/g,'');
+   
+
+    if(minSalary === "" || maxSalary === "" || maxSalary == 0 || minSalary ==0){
+         
+
+        e.preventDefault();
+
+        alert("Salary fields can not be null");
+
+        return false;
+    }
+    
+
+    if(parseInt(minSalary) > parseInt(maxSalary)){
+
+       
+        e.preventDefault();
+
+        alert("Minimum salary can not be greater than maximum salary");
+
+        return false;
+    }
+
+
+});
+
+</script>
+
+@stop
