@@ -97,14 +97,32 @@ class JobController extends Controller
     {
         $job = Job::findOrFail($id);
 
+        
+        $salaryMin = is_numeric(str_replace(',', '', $request->salary_min))
+            ? (float) str_replace(',', '', $request->salary_min)
+            : null;
+
+        $salaryMax = is_numeric(str_replace(',', '', $request->salary_max))
+            ? (float) str_replace(',', '', $request->salary_max)
+            : null;
+    
+
+        $data['salary_min'] = $request->salary_min
+            ? (int) str_replace(',', '', $request->salary_min)
+            : null;
+
+        $data['salary_max'] = $request->salary_max
+            ? (int) str_replace(',', '', $request->salary_max)
+            : null;
+
         $job->update([
             'title' => $request->title,
             'category' => $request->category, // tumhara column name
             'company_name' => $request->company_name,
             'location' => $request->location,
             'company_email' => $request->company_email,
-            'salary_min' => $request->salary_min,
-            'salary_max' => $request->salary_max,
+            'salary_min' => $data['salary_min'] ,
+            'salary_max' =>  $data['salary_max'],
             'experience' => $request->experience,
             'description' => $request->description,
             'job_type' => $request->job_type,
