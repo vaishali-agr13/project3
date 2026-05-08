@@ -176,13 +176,27 @@ class JobController extends Controller
              'no_of_openings'=>'required'
         ]);
 
-        // 2. Database mein save karein
 
+        $salaryMin = is_numeric(str_replace(',', '', $request->salary_min))
+            ? (float) str_replace(',', '', $request->salary_min)
+            : null;
+
+        $salaryMax = is_numeric(str_replace(',', '', $request->salary_max))
+            ? (float) str_replace(',', '', $request->salary_max)
+            : null;
+        // 2. Database mein save karein
         $data = $request->all();
 
-        //$data['skills_required'] = json_encode($request->skills_required);
+        $data['salary_min'] = $request->salary_min
+            ? (int) str_replace(',', '', $request->salary_min)
+            : null;
+
+        $data['salary_max'] = $request->salary_max
+            ? (int) str_replace(',', '', $request->salary_max)
+            : null;
+
         $job = Job::create($data);
-       
+        
 
         if ($request->posted_by_type == 'admin') {
                $users = User::where('role', 'candidate')->get();

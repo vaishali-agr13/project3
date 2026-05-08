@@ -167,7 +167,8 @@
 
                        <div class="form-group">
                             <label for="description">No of Openings</label>
-                            <input type="text" name="no_of_openings" class="form-control" placeholder="No of Openings" value="{{ old('no_of_openings') }}" required>
+                            <input type="number" name="no_of_openings" min="1" step="1"
+                                 class="form-control" placeholder="No of Openings" value="{{ old('no_of_openings') }}" required>
                         </div>
 
 
