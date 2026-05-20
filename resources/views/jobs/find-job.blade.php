@@ -148,7 +148,17 @@
 
       <div class="filter-group">
         <h4>Location</h4>
-        <label class="filter-option">
+
+          @foreach($districts as $district)
+            <label class="filter-option">
+              <input type="checkbox" name="locations[]" value="{{$district}}"
+              {{ in_array($district, request('locations', [])) ? 'checked' : '' }}>
+              <span>{{$district}}</span>
+            </label>
+          @endforeach
+
+
+        <!-- <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Delhi"
           {{ in_array('Delhi', request('locations', [])) ? 'checked' : '' }}>
           <span>Delhi</span>
@@ -192,7 +202,7 @@
           <input type="checkbox" name="locations[]" value="Bhopal"
           {{ in_array('Bhopal', request('locations', [])) ? 'checked' : '' }}>
           <span>Bhopal</span>
-        </label>
+        </label> -->
       </div>
 
       <div class="filter-group">
@@ -284,7 +294,7 @@
                 <div class="job-company">
                   <h3>{{$job->company_name}}</h3>
                   <p>
-                    {{ \Illuminate\Support\Str::limit($job->location, 10, '...') }}
+                    {{ \Illuminate\Support\Str::limit($job->district, 10, '...') }}
                   </p>
                 </div>
               </div>

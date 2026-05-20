@@ -572,14 +572,15 @@ class JobController extends Controller
                     }
 
                     // LOCATION (array support bhi safe)
+
                     if ($request->filled('locations')) {
                         $q->where(function ($loc) use ($request) {
-                            foreach ($request->locations as $city) {
-                                $loc->orWhere('location', 'like', "%{$city}%");
+                            foreach ($request->locations as $district) {
+                                $loc->orWhere('district', 'like', "%{$district}%");
                             }
                         });
                     } elseif ($request->filled('location')) {
-                        $q->where('location', 'like', "%{$request->location}%");
+                        $q->where('district', 'like', "%{$request->location}%");
                     }
 
                     // CATEGORY
@@ -619,8 +620,11 @@ class JobController extends Controller
                 });
 
                 $jobs = $query->latest()->get();
-
-                return view('jobs.find-job', compact('jobs', 'categories'));
+                $districts = Job::select('district')
+                                   ->whereNotNull('district')
+                                   ->distinct()
+                                   ->pluck('district');
+                return view('jobs.find-job', compact('jobs', 'categories','districts'));
             }
 
     public function updateStatus($id, $status)
