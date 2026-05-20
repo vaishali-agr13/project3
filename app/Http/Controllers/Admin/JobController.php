@@ -98,17 +98,7 @@ class JobController extends Controller
 
     public function update(Request $request, $id)
     {
-        $job = Job::find($id);
-
-        
-        $salaryMin = is_numeric(str_replace(',', '', $request->salary_min))
-            ? (float) str_replace(',', '', $request->salary_min)
-            : null;
-
-        $salaryMax = is_numeric(str_replace(',', '', $request->salary_max))
-            ? (float) str_replace(',', '', $request->salary_max)
-            : null;
-    
+        $job = Job::find($id);    
 
         $data['salary_min'] = $request->salary_min
             ? (int) str_replace(',', '', $request->salary_min)
@@ -122,7 +112,7 @@ class JobController extends Controller
             'title' => $request->title,
             'category' => $request->category, // tumhara column name
             'company_name' => $request->company_name,
-            'location' => $request->location,
+            'district' => $request->district,
             'company_email' => $request->company_email,
             'salary_min' => $data['salary_min'] ,
             'salary_max' =>  $data['salary_max'],
@@ -185,7 +175,7 @@ class JobController extends Controller
             'title' => 'required|max:255',
             'category' => 'required',
             'description' => 'required',
-            'location' => 'required',
+            'district' => 'required',
             'salary_min' => 'nullable',
             'salary_max' => 'nullable',
             'company_name' => 'nullable',
@@ -195,15 +185,6 @@ class JobController extends Controller
              'who_can_apply'=>'required',
              'no_of_openings'=>'required'
         ]);
-
-
-        $salaryMin = is_numeric(str_replace(',', '', $request->salary_min))
-            ? (float) str_replace(',', '', $request->salary_min)
-            : null;
-
-        $salaryMax = is_numeric(str_replace(',', '', $request->salary_max))
-            ? (float) str_replace(',', '', $request->salary_max)
-            : null;
         // 2. Database mein save karein
         $data = $request->all();
 

@@ -160,7 +160,7 @@
                          <div class="col-md-6">
                             <div class="form-group">
                                 <label for="location">Location</label>
-                                <input type="text" name="location" class="form-control" placeholder="e.g. Indore, Remote, etc." value="{{ old('location') }}" required>
+                                <input type="text" name="district" class="form-control" placeholder="e.g. Indore, Remote, etc." value="{{ old('district') }}" required>
                             </div>
                         </div>
 
