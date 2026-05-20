@@ -43,8 +43,11 @@ class JobController extends Controller
 
     public function edit($id, Request $request)
     {
-        $job = Job::findOrFail($id);
+        $job = Job::find($id);
         $categories = Category::all();
+        if (!$job) {
+          return redirect()->back()->with('error', 'Job not found');
+        }
 
          $from = $request->from;
 
@@ -95,7 +98,7 @@ class JobController extends Controller
 
     public function update(Request $request, $id)
     {
-        $job = Job::findOrFail($id);
+        $job = Job::find($id);
 
         
         $salaryMin = is_numeric(str_replace(',', '', $request->salary_min))
@@ -145,7 +148,7 @@ class JobController extends Controller
 
     public function destroy($id)
     {
-        $job = Job::findOrFail($id);
+        $job = Job::find($id);
         $job->delete();
         return redirect('/admin/companies/jobs')->with('success', 'Job Deleted Successfully');
         //return redirect()->route('/companies/jobs')->with('success', 'Job Deleted Successfully');
@@ -153,13 +156,13 @@ class JobController extends Controller
 
 
     public function applyForm($id){
-            $job = Job::with('categoryData')->findOrFail($id);
+            $job = Job::with('categoryData')->find($id);
             return view('jobs.apply-job', compact('job'));
     }
 
     public function updateApplicationStatus(Request $request, $id)
         {
-            $application = Application::findOrFail($id);
+            $application = Application::find($id);
 
             // validate status
             $request->validate([
@@ -189,7 +192,6 @@ class JobController extends Controller
             'company_email' => 'nullable',
             'experience' => 'required', // Isse mandatory banaya hai
              'posted_by_type' => 'required'  ,
-             'skills_required'=>'required',
              'who_can_apply'=>'required',
              'no_of_openings'=>'required'
         ]);
@@ -392,6 +394,87 @@ class JobController extends Controller
             //     ->with('success', 'Application submitted! Please upload resume.');
         }
 
+
+
+
+        public function storeCompanyDetails(Request $request)
+        {
+            // ✅ Validation
+            $request->validate([
+                'company_name'  => 'required|string|max:255',
+                'company_email' => 'required|email|max:255',
+                'company_phone' => 'required|max:20',
+                'website'       => 'nullable|max:255',
+                'pincode'       => 'required|digits:6',
+                'state'         => 'required|string|max:255',
+                'district'      => 'required|string|max:255',
+                'address'       => 'required|string',
+            ]);
+
+            // ✅ Save Company
+            $company = Job::create([
+                'user_id'       => auth()->id(),
+                'company_name'  => $request->company_name,
+                'company_email' => $request->company_email,
+                'company_phone' => $request->company_phone,
+                'website'       => $request->website,
+                'pincode'       => $request->pincode,
+                'state'         => $request->state,
+                'district'      => $request->district,
+                'address'       => $request->address,
+            ]);
+
+            session(['job_id' => $company->id]);
+
+
+            // ✅ Session for step 2
+            return redirect()->back()->with('success', 'Company details saved successfully.')
+                                     ->with('step', 2);
+        }
+
+    public function storeJobByCompany(Request $request)
+    { 
+        $jobId = session('job_id');
+        $job = Job::find($jobId);
+
+        $email = $job->company_email;
+
+        $data['salary_min'] = $request->salary_min
+            ? (int) str_replace(',', '', $request->salary_min)
+            : null;
+
+        $data['salary_max'] = $request->salary_max
+            ? (int) str_replace(',', '', $request->salary_max)
+            : null;
+
+        
+
+        $job->update([
+
+                'title'                 => $request->title,
+                'category'              => $request->category,
+                'age_criteria'               => $request->age_criteria,
+                'qualification_eligibility'  => $request->qualification_eligibility,
+                'location'              => $request->location,
+                'salary_min'            => $data['salary_min'],
+                'salary_max'            => $data['salary_max'],
+                'who_can_apply'         => $request->who_can_apply,
+                'no_of_openings'        => $request->no_of_openings,
+                'required_document'     => $request->required_document,
+                'job_type'              => $request->job_type,
+                'experience'            => $request->experience,
+                'description'           => $request->description,
+                'approval_status'       => 'pending',
+                'posted_by_type'       =>'company'
+            ]);
+
+            Mail::to( $email)
+                ->send(new JobPostedMail($job));
+
+            return back()->with('success', 'Job posted successfully');
+    }
+
+    
     public function show($id)
         {
             // 1. Database se job find karein
@@ -400,7 +483,7 @@ class JobController extends Controller
 
             // 2. Check karein agar job nahi mili toh 404 error dikhayein
             if (!$job) {
-                abort(404);
+                  return redirect()->back()->with('success', 'Job Not exist...');            
             }
 
             // 3. 'job' variable ko view mein bhejien (Ye sabse zaroori step hai)
@@ -445,17 +528,10 @@ class JobController extends Controller
                 return redirect()->back()->with('success', 'Application deleted successfully!');
         }
         
-    public function find_job(Request $request)
-        {
-            // $categories = Category::with(['jobs' => function ($query) {
-            //         $query->latest();
-            //     }])
-            //     ->withCount('jobs')
-            //     ->get();
-
-
-
-            $categories = Category::with(['jobs' => function ($query) {
+        public function find_job(Request $request)
+            {
+                // Categories with jobs
+                $categories = Category::with(['jobs' => function ($query) {
                     $query->where(function ($q) {
                         $q->where('posted_by_type', 'admin')
                         ->orWhere(function ($q2) {
@@ -474,68 +550,78 @@ class JobController extends Controller
                     });
                 }])
                 ->get();
-            $query = Job::with('categoryData');
 
-            // ✅ IMPORTANT: Admin + Company Approved Logic
-            $query->where(function ($q) {
-                $q->where('posted_by_type', 'admin')
-                ->orWhere(function ($q2) {
-                    $q2->where('posted_by_type', 'company')
-                        ->where('approval_status', 'approved');
-                });
-            });
+                // Base job query
+                $query = Job::with('categoryData');
 
-            // 🔍 Search Filters
-            $query->where(function ($q) use ($request) {
-
-                // TITLE search
-                if ($request->filled('title')) {
-                    $q->where('title', 'like', "%{$request->title}%");
-                }
-
-                // LOCATION search
-                if ($request->filled('location')) {
-                    $q->where('location', 'like', "%{$request->location}%");
-                }
-
-                // CATEGORY search
-                if ($request->filled('category')) {
-                    $q->whereHas('categoryData', function ($cat) use ($request) {
-                        $cat->where('name', 'like', "%{$request->category}%");
+                // Admin + Approved Company Logic
+                $query->where(function ($q) {
+                    $q->where('posted_by_type', 'admin')
+                    ->orWhere(function ($q2) {
+                        $q2->where('posted_by_type', 'company')
+                            ->where('approval_status', 'approved');
                     });
-                }
-            });
+                });
 
-            // Job Type
-            if ($request->has('job_type')) {
-                $query->whereIn('job_type', $request->job_type);
+                // Filters
+                $query->where(function ($q) use ($request) {
+
+                    // TITLE
+                    if ($request->filled('title')) {
+                        $q->where('title', 'like', "%{$request->title}%");
+                    }
+
+                    // LOCATION (array support bhi safe)
+                    if ($request->filled('locations')) {
+                        $q->where(function ($loc) use ($request) {
+                            foreach ($request->locations as $city) {
+                                $loc->orWhere('location', 'like', "%{$city}%");
+                            }
+                        });
+                    } elseif ($request->filled('location')) {
+                        $q->where('location', 'like', "%{$request->location}%");
+                    }
+
+                    // CATEGORY
+                    if ($request->filled('category')) {
+                        $q->whereHas('categoryData', function ($cat) use ($request) {
+                            $cat->where('name', 'like', "%{$request->category}%");
+                        });
+                    }
+
+                    // EXPERIENCE ✅ ADDED
+                    if ($request->filled('experience')) {
+                        $q->whereIn('experience', $request->experience);
+                    }
+
+                    // JOB TYPE
+                    if ($request->filled('job_type')) {
+                        $q->whereIn('job_type', $request->job_type);
+                    }
+
+                    // SALARY
+                    if ($request->filled('salary')) {
+
+                        $ranges = [
+                            '0-3' => [0, 300000],
+                            '3-6' => [300000, 600000],
+                            '6-10'=>[600000,1000000],
+                            '10-15'=>[1000000,1500000]
+                        ];
+
+                        if (isset($ranges[$request->salary])) {
+                            [$min, $max] = $ranges[$request->salary];
+
+                            $q->where('salary_min', '>=', $min)
+                            ->where('salary_max', '<=', $max);
+                        }
+                    }
+                });
+
+                $jobs = $query->latest()->get();
+
+                return view('jobs.find-job', compact('jobs', 'categories'));
             }
-
-            // Sidebar Location
-            if ($request->has('locations')) {
-                $query->whereIn('location', $request->locations);
-            }
-
-            // Salary Filter
-            if ($request->filled('salary')) {
-
-                $ranges = [
-                    '0-3' => [0, 300000],
-                    '3-6' => [300000, 600000],
-                ];
-
-                if (isset($ranges[$request->salary])) {
-                    [$min, $max] = $ranges[$request->salary];
-
-                    $query->where('salary_min', '>=', $min)
-                        ->where('salary_max', '<=', $max);
-                }
-            }
-
-            $jobs = $query->latest()->get();
-
-            return view('jobs.find-job', compact('jobs', 'categories'));
-        }
 
     public function updateStatus($id, $status)
         {

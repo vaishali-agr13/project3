@@ -38,7 +38,7 @@ class AuthController extends Controller
                 'phone' => 'nullable|string|max:20',
             ]);
 
-            $profile = Profile::findOrFail($id);
+            $profile = Profile::find($id);
 
             $data = [
                 'name'  => $request->name,

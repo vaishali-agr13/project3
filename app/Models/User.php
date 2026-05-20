@@ -51,7 +51,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function profile()
+    public function candidateProfile()
     {
        return $this->hasOne(CandidateProfile::class);
     }

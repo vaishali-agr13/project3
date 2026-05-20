@@ -81,7 +81,7 @@
                     <th>Resume</th>
                     <th>Date</th>
                     <th>status</th>
-                    <th style="width: 150px">Actions</th>
+                    <th style="width: 300px">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -111,24 +111,24 @@
                             <span class="badge badge-warning">Pending</span>
                         @endif
                     </td>
-                        <td>
+                    <td>
+                        <div class="d-flex align-items-center flex-wrap" style="gap:6px;">
 
-                        <!-- View Button -->
-                        <button class="btn btn-sm btn-primary mb-1"
-                            data-toggle="modal" data-target="#modal-{{ $app->id }}">
-                            View
-                        </button>
+                            <!-- View Button -->
+                            <button class="btn btn-sm btn-primary"
+                                data-toggle="modal" data-target="#modal-{{ $app->id }}">
+                                View
+                            </button>
 
-                        @if(auth()->user()->role === 'admin')
+                            @if(auth()->user()->role === 'admin')
 
-                            @if($app->status == 'pending')
-
-                                <div class="d-flex gap-2 mt-1">
+                                @if($app->status == 'pending')
 
                                     {{-- Approve --}}
-                                    <form action="{{ route('applications.updateStatus', $app->id) }}" method="POST">
+                                    <form action="{{ route('applications.updateStatus', $app->id) }}" method="POST" class="m-0">
                                         @csrf
                                         <input type="hidden" name="status" value="approved">
+
                                         <button type="submit" class="btn btn-success btn-sm"
                                             onclick="return confirm('Approve this application?')">
                                             <i class="fas fa-check"></i>
@@ -136,41 +136,38 @@
                                     </form>
 
                                     {{-- Reject --}}
-                                    <form action="{{ route('applications.updateStatus', $app->id) }}" method="POST">
+                                    <form action="{{ route('applications.updateStatus', $app->id) }}" method="POST" class="m-0">
                                         @csrf
                                         <input type="hidden" name="status" value="rejected">
+
                                         <button type="submit" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Reject this application?')">
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </form>
 
-                                </div>
+                                @else
+                                    <span class="badge badge-secondary">Action Done</span>
+                                @endif
 
-                            @else
-                                <span class="badge badge-secondary">Action Done</span>
+                                {{-- Delete --}}
+                                <form action="{{ route('applications.delete', $app->id) }}" 
+                                    method="POST"
+                                    onsubmit="return confirm('Are you sure?');"
+                                    class="m-0">
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Delete
+                                    </button>
+                                </form>
+
                             @endif
 
-                            {{-- Delete --}}
-                            <form action="{{ route('applications.delete', $app->id) }}" method="POST"
-                                onsubmit="return confirm('Are you sure?');"
-                                class="mt-1">
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
-                            </form>
-
-                        @endif
-
-                        </td>
-                                            
-                        
-                    
-
+                        </div>
+                    </td>
                 </tr>
 
 
@@ -204,7 +201,7 @@
                                     <div class="col-md-6">
                                         <p><strong>📍 Location:</strong> 
                                         
-                                         {{ \Illuminate\Support\Str::limit($app->job->location , 10, '...') }}                                    
+                                         {{ \Illuminate\Support\Str::limit(optional($app->job)->location ?? 'N/A', 10, '...') }}                                   
                                     </p>
                                     </div>
                                 </div>

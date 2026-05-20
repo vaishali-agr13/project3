@@ -54,7 +54,10 @@ class CategoryController extends Controller
 
     public function edit($id)
         {
-            $category = Category::findOrFail($id);
+            $category = Category::find($id);
+            if (!$category) {
+                return redirect()->back()->with('error', 'Category not found');
+             }
             return view('admin.categories.edit', compact('category'));
         }
 
@@ -67,7 +70,7 @@ class CategoryController extends Controller
                 'description' => 'nullable'
             ]);
 
-            $category = Category::findOrFail($id);
+            $category = Category::find($id);
 
             $category->update([
                 'name' => $request->name,
@@ -80,7 +83,7 @@ class CategoryController extends Controller
 
         public function destroy($id)
         {
-            $category = Category::findOrFail($id);
+            $category = Category::find($id);
             $category->delete();
 
             return redirect('/admin/categories')->with('success', 'Category Deleted');
@@ -96,7 +99,7 @@ class CategoryController extends Controller
                                 ->where('approval_status', 'approved');
                         });
                     })->latest();
-                }])->findOrFail($id);
+                }])->find($id);
 
             return view('categories', compact('category'));
         }

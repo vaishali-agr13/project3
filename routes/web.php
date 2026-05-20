@@ -75,6 +75,10 @@ Route::get('/find-jobs', [JobController::class, 'find_job']);
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/services', [HomeController::class, 'services']);
 Route::get('/companies', [HomeController::class, 'companies']);
+Route::post('/company/store', [JobController::class, 'storeCompanyDetails']);
+Route::post('/jobs/store-by-company', [JobController::class, 'storeJobByCompany']);
+
+
 Route::get('/privacy-policy', [HomeController::class, 'privacy_policy']);
 Route::get('/jobs/{id}/apply', [JobController::class, 'applyForm'])->name('jobs.apply.form');
 

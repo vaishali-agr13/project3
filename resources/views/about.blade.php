@@ -71,7 +71,7 @@
 </section>
 
 <!-- 🔹 SECTION 4: CALL TO ACTION -->
-<section class="py-16 blue-700 text-white text-center">
+<section class="py-16 bg-[#0049af] text-center">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
     <p class="mb-6 text-purple-100">Join our platform today and explore thousands of job opportunities.</p>

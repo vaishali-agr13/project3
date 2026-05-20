@@ -112,7 +112,16 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="experience">Experience Required</label>
-                                <input type="text" name="experience" class="form-control" placeholder="e.g. 2-3 Years" value="{{ old('experience') }}" required>
+                                <!-- <input type="text" name="experience" class="form-control" placeholder="e.g. 2-3 Years" value="{{ old('experience') }}" required> -->
+                                <select name="experience" class="form-control" required>
+                                    <option value="">All Experience</option>
+                                    <option value="Fresher">Fresher</option>
+                                    <option value="Less than 1 year">Less than 1 year</option>
+                                    <option value="Less than 2 years">Less than 2 years</option>
+                                    <option value="Less than 3 years">Less than 3 years</option>
+                                    <option value="Less than 4 years">Less than 4 years</option>
+                                    <option value="More than 4 years">More than 4 years</option>
+                                </select>
                             </div>
                         </div>
 
@@ -142,8 +151,8 @@
 
                          <div class="col-md-4">
                             <div class="form-group">
-                                <label for="status">Who can apply</label>
-                               <input type="text" name="who_can_apply" class="form-control" placeholder="Who Can Apply" value="{{ old('who_can_apply') }}" required>
+                                <label for="status">Gender Preference</label>
+                               <input type="text" name="who_can_apply" class="form-control" placeholder="Gender Preference" value="{{ old('who_can_apply') }}" required>
 
                             </div>
                         </div>
@@ -157,38 +166,17 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="location">No of Openings</label>
+                                <input type="number" name="no_of_openings" min="1" step="1" class="form-control" placeholder="No of Openings" value="{{ old('no_of_openings') }}" required>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="location">Roles and Responsibility--</label>
                                 <input type="text" name="roles_responsibility" class="form-control" placeholder="Roles and Responsibility" value="{{ old('roles_responsibility') }}" >
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                       <div class="form-group">
-                            <label for="description">No of Openings</label>
-                            <input type="number" name="no_of_openings" min="1" step="1"
-                                 class="form-control" placeholder="No of Openings" value="{{ old('no_of_openings') }}" required>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="status">Skills Required</label>
-                                <input type="text" name="skills_required" class="form-control" placeholder="Skills Required" value="{{ old('skills_required') }}" required>
-                                <!-- <select name="skills_required[]" multiple class="form-control">
-                                    <option value="php">PHP</option>
-                                    <option value="laravel">Laravel</option>
-                                    <option value="mysql">MySQL</option>
-                                    <option value="javascript">JavaScript</option>
-                                    <option value="vue">Vue.js</option>
-                                </select> -->
-                            </div>
-                        </div>
-                        
-                        
-
-                       
+                        </div> -->
                     </div>
 
                     {{-- Description --}}

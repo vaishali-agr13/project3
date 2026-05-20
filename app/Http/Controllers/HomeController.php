@@ -67,6 +67,7 @@ class HomeController extends Controller
     public function companies()
     { 
          $categories = Category::all();
+
          return view('company', compact('categories'));
     }
 

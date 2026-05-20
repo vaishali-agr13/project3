@@ -8,6 +8,21 @@
          .register-card-body {
             padding : 37px !important;
          }
+
+            .card {
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        /* Input fields round */
+        .form-control {
+            border-radius: 10px !important;
+        }
+
+        /* Button round */
+        .btn-primary {
+            border-radius: 10px;
+        }
         </style>
 </head>
 

@@ -1,32 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!--pop up code -->
-
-<!-- <div id="thankPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
-  
-  <div style="background:white; width:320px; padding:20px; border-radius:8px; text-align:center; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:black;">
-    
-    <span onclick="closeThankPopup()" style="position:absolute; top:10px; right:15px; cursor:pointer;">&times;</span>
-
-    <h3>Thank You 🎉</h3>
-    <p>Your application has been submitted successfully.</p>
-
-
-     <a href="https://wa.me/919876543210" target="_blank"
-       style="display:block; margin-top:15px; background:#25D366; color:white; padding:10px; border-radius:5px; text-decoration:none;">
-        Chat on WhatsApp
-    </a>
-
-    <a href="https://chat.whatsapp.com/H4PArHFPz8L0W4L3msdTKP" target="_blank"
-       style="display:block; margin-top:10px; background:#76ac20; color:white; padding:10px; border-radius:5px; text-decoration:none;">
-        Join Community
-    </a>
-
-
-
-  </div>
-</div> -->
 
 
 <div class="bg-gray-100 min-h-screen py-10">
@@ -66,7 +40,7 @@
                         <div>
                             <p class="text-gray-500 text-sm">Category</p>
                            
-                            <p class="font-bold text-gray-800">{{ $job->categoryData->name }}</p>
+                            <p class="font-bold text-gray-800">{{ optional($job->categoryData)->name ?? 'No Category' }}</p>
                         </div>
                         <div>
                             <p class="text-gray-500 text-sm">Posted On</p>
@@ -95,7 +69,7 @@
                             <li>Ability to work in a fast-paced environment.</li>
                         </ul> -->
                     </div>
-                     @if(!empty($job->roles_responsibility) && $job->roles_responsibility != 'NA')
+                     @if(!empty($job->roles_responsibility) && $job->roles_responsibility != 'NA' && $job->roles_responsibility != 'na')
 
                         <div class="prose max-w-none text-gray-700 leading-relaxed" >
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Roles & Responsibilities</h3>
@@ -103,21 +77,21 @@
                         </div>
                     @endif
 
-                        @if(!empty($job->skills_required) && $job->skills_required != 'NA')
+                        @if(!empty($job->skills_required) && $job->skills_required != 'NA' && $job->skills_required != 'na')
                             <div class="prose max-w-none text-gray-700 leading-relaxed">
                                 <h3 class="text-xl font-bold text-gray-900 mb-4">Skills Required</h3>
                                 {{ $job->skills_required }}
                             </div>
                         @endif
 
-                        @if(!empty($job->who_can_apply) && $job->who_can_apply != 'NA')
+                        @if(!empty($job->who_can_apply) && $job->who_can_apply != 'NA' && $job->who_can_apply != 'na')
                             <div class="prose max-w-none text-gray-700 leading-relaxed">
                                 <h3 class="text-xl font-bold text-gray-900 mb-4">Who can apply</h3>
                                 {{ $job->who_can_apply }}
                             </div>
                         @endif
 
-                        @if(!empty($job->no_of_openings)&& $job->no_of_openings != '0')
+                        @if(!empty($job->no_of_openings) && $job->no_of_openings != '0')
                             <div class="prose max-w-none text-gray-700 leading-relaxed">
                                 <h3 class="text-xl font-bold text-gray-900 mb-4">Number of openings</h3>
                                 {{ $job->no_of_openings }}
@@ -125,13 +99,12 @@
                         @endif
 
                    
-                    <div class="flex justify-end">
-                        <a href="{{ route('jobs.apply.form', $job->id) }}"
-                        class="bg-[#0049af] text-white py-3 px-6 rounded-lg font-bold">
-                            Apply Now
-                        </a>
-                    </div>
-                    <!-- <button type="button" class="bg-lime-600  text-white px-4 py-2 rounded-lg ml-auto block transition">
+                    
+                    <a href="{{ route('jobs.apply.form', $job->id) }}"
+                    class="bg-[#0049af] text-white px-4 py-2 rounded-lg ml-auto block w-fit">
+                        Apply Now
+                    </a>
+                    <!-- <button type="button" class="bg-[#0049af]  text-white px-4 py-2 rounded-lg ml-auto block transition">
                        Apply Now
                     </button> -->
 

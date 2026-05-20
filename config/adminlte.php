@@ -385,7 +385,7 @@ return [
         ],
 
         [
-            'text' => 'Apply Job',
+            'text' => 'Applied Job',
             'url'  => 'candidate/applications', // Jo route humne abhi banaya
             'icon' => 'fas fa-fw fa-users',
             //'label'       => 4, // Optional: Aap yahan dynamic count bhi dikha sakte hain

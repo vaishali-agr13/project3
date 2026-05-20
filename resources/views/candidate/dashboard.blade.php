@@ -95,8 +95,10 @@
                         <tbody>
                             @forelse($applications ?? [] as $app)
                                 <tr>
-                                    <td>{{ $app->job->title }}</td>
-                                    <td>{{ $app->job->company_name }}</td>
+                                    <td>
+                                        {{ $app->job->title ?? 'N/A' }}
+                                    </td>
+                                    <td>{{ $app->job->company_name ?? 'N/A'}}</td>
                                     <td>
                                         
                                         @if($app->status == 'pending')

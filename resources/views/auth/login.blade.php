@@ -14,6 +14,21 @@
         .login-card-body {
             padding:37px !important;
         }
+
+          .card {
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        /* Input fields round */
+        .form-control {
+            border-radius: 10px !important;
+        }
+
+        /* Button round */
+        .btn-primary {
+            border-radius: 10px;
+        }
     </style>
 </head>
 
@@ -23,9 +38,9 @@
 
 <div class="login-box">
         @if(request()->is('candidate/login'))
-            <h2 style="margin-left:66px;">Candidate Login</h2>
+            <h2 style="margin-left:66px; color:white;">Candidate Login</h2>
         @else
-            <h2 style="margin-left:85px;">Admin Login</h2>
+            <h2 style="margin-left:85px;color:white;">Admin Login</h2>
         @endif
 
     <div class="card">
@@ -82,21 +97,21 @@
                 </div>
 
             </form>
-
-            <div class="row mt-2">
-                <div class="col-12 text-right">
-                        <a href="{{ url('/forgot-password') }}">
-                            Forgot Password?
-                        </a>
-                  
+            @if(request()->is('candidate/login'))
+                <div class="row mt-2">
+                    <div class="col-12 text-right">
+                            <a href="{{ url('/forgot-password') }}">
+                                Forgot Password?
+                            </a>
+                    
+                    </div>
                 </div>
-            </div>
 
 
-            <p class="mb-1 text-left">
-                <a href="{{ url('/candidate/register') }}">Create a new account</a>
-            </p>
-
+                <p class="mb-1 text-left">
+                    <a href="{{ url('/candidate/register') }}">Create a new account</a>
+                </p>
+             @endif
         </div>
     </div>
 </div>

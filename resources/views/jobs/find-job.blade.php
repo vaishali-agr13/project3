@@ -4,15 +4,13 @@
 @section('content')
 <main>
 <div class="jobs-hero">
-  <!-- Hero Text -->
   <div class="hero-content header-text">
     <h1>The official <span class="highlight">IT Jobs</span> site</h1>
     <p>“JobBox is our first stop whenever we're hiring a PHP role. We've hired 10 PHP developers in the last few years, all thanks to JobBox.” — Andrew Hall, Elite JSC.</p>
   </div>
         <form action="{{ url('/find-jobs') }}" method="GET">
                            
-                <!-- Search Box -->
-          <div class="search-box">
+                <div class="search-box">
           
               <div class="search-item">
                   <span>🔍</span>
@@ -28,24 +26,6 @@
 
               <div class="divider"></div>
 
-              <!-- <div class="search-item">
-                  <select  name="category">
-                      <option value="" disabled selected>
-                            Select Category
-                        </option>
-
-                      @foreach($categories as $category)
-                          <option value="{{ $category->name }}"
-                                {{ request('category') == $category->name ? 'selected' : '' }}>
-                              {{ $category->name }}
-                          </option>
-                  
-                      @endforeach
-
-                  </select>
-              </div> -->
-
-
               <div class="search-item relative" x-data="{ open: false, selected: '{{ request('category') ?? '' }}' }">
     
                 <div @click="open = !open" class="category-text flex items-center cursor-pointer space-x-3 min-w-[180px]">
@@ -54,12 +34,14 @@
                     
                     <div class="flex flex-col overflow-hidden">
                         <template x-if="selected !== ''">
-                            <span class="text-[10px] text-blue-500 font-bold uppercase leading-none mb-1">Category</span>
+                            <span class="text-[9px] text-blue-500 font-bold uppercase leading-none mb-1">
+                                Category
+                            </span>
                         </template>
 
-                        <span class="text-gray-700 font-semibold leading-tight truncate" 
-                              x-text="selected === '' ? 'Select Category' : selected">
-                        </span>
+                         <span style="font-size:15px; line-height:1;" class="text-[9px] leading-none font-normal text-gray-400 truncate"
+                           x-text="selected === '' ? 'Select Category' : selected">
+                         </span>
                     </div>
 
                     <svg class="w-4 h-4 text-gray-400 transition-transform duration-300 ml-auto" 
@@ -109,12 +91,10 @@
               
           </div>
         </form>
-  <!-- Categories -->
- <div class="categories-container">
+  <div class="categories-container">
     <div class="swiper categorySwiper">
         <div class="swiper-wrapper">
             @foreach($categories as $category)
-                <!-- Slide must be the direct child of swiper-wrapper -->
                 <div class="swiper-slide">
                     <a href="{{ url('/categories/'.$category->id) }}" style="text-decoration: none; display: block; width: 100%;">
                         <div class="category-box">
@@ -129,7 +109,6 @@
             @endforeach
         </div>
         
-        <!-- Dots -->
         <div class="swiper-pagination"></div>
     </div>
 </div>
@@ -140,125 +119,154 @@
   ☰ Filters
 </button>
 
-  <!-- LEFT SIDEBAR (SEPARATE FORM) -->
   <aside class="filters">
 
-      <button onclick="toggleFilters()" style="float:right; font-size:18px; border:none; background:none; cursor:pointer;">
-      ✖
+      <button onclick="toggleFilters()" class="close-filter-btn" style="float:right; font-size:18px; border:none; background:none; cursor:pointer;">
+       ✖
     </button>
 
     <form method="GET" action="{{ url('/find-jobs') }}" id="filterForm">
 
-      <h3>All Filters</h3>
+      <div class="filter-header">
+        <h3>Filters</h3>
+      </div>
 
-      <!-- Job Type -->
       <div class="filter-group">
         <h4>Job Type</h4>
-        <label>
+        <label class="filter-option">
           <input type="checkbox" name="job_type[]" value="Full-Time"
           {{ in_array('Full-Time', request('job_type', [])) ? 'checked' : '' }}>
          <span>Full Time</span>
         </label>
 
-        <label>
+        <label class="filter-option">
           <input type="checkbox" name="job_type[]" value="Part-Time"
           {{ in_array('Part-Time', request('job_type', [])) ? 'checked' : '' }}>
           <span>Part Time</span>
         </label>
-
-        
       </div>
 
-      <!-- Location -->
       <div class="filter-group">
         <h4>Location</h4>
-        <label>
+        <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Delhi"
           {{ in_array('Delhi', request('locations', [])) ? 'checked' : '' }}>
           <span>Delhi</span>
         </label>
 
-        <label>
+        <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Mumbai"
           {{ in_array('Mumbai', request('locations', [])) ? 'checked' : '' }}>
         <span>Mumbai</span>
         </label>
 
-         <label>
+         <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Pune"
           {{ in_array('Pune', request('locations', [])) ? 'checked' : '' }}>
           <span>Pune</span>
         </label>
-         <label>
+        <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Hyderabad"
           {{ in_array('Hyderabad', request('locations', [])) ? 'checked' : '' }}>
           <span>Hyderabad</span>
         </label>
-         <label>
+        <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Noida"
           {{ in_array('Noida', request('locations', [])) ? 'checked' : '' }}>
           <span>Noida</span>
         </label>
 
-         <label>
+         <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Bengaluru"
           {{ in_array('Bengaluru', request('locations', [])) ? 'checked' : '' }}>
           <span>Bengaluru</span>
         </label>
 
-        
-         <label>
+         <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Indore"
           {{ in_array('Indore', request('locations', [])) ? 'checked' : '' }}>
           <span>Indore</span>
         </label>
         
-         <label>
+         <label class="filter-option">
           <input type="checkbox" name="locations[]" value="Bhopal"
           {{ in_array('Bhopal', request('locations', [])) ? 'checked' : '' }}>
           <span>Bhopal</span>
         </label>
-
       </div>
 
-      <!-- Salary -->
       <div class="filter-group">
         <h4>Salary</h4>
-        <label>
+        <label class="filter-option">
           <input type="radio" name="salary" value="0-3"
           {{ request('salary') == '0-3' ? 'checked' : '' }}>
           <span>0-3 LPA</span>
         </label>
 
-        <label>
+        <label class="filter-option">
           <input type="radio" name="salary" value="3-6"
           {{ request('salary') == '3-6' ? 'checked' : '' }}>
          <span>3-6 LPA</span>
         </label>
-        <label>
+        <label class="filter-option">
           <input type="radio" name="salary" value="6-10"
           {{ request('salary') == '6-10' ? 'checked' : '' }}>
          <span>6-10 LPA</span>
         </label>
-        <label>
+        <label class="filter-option">
           <input type="radio" name="salary" value="10-15"
           {{ request('salary') == '10-15' ? 'checked' : '' }}>
          <span>10-15 LPA</span>
         </label>
-
       </div>
 
-      <!-- Buttons -->
+      <div class="filter-group">
+          <h4>Experience</h4>
+
+          <label class="filter-option">
+              <input type="checkbox" name="experience[]" value="Fresher"
+              {{ in_array('Fresher', request('experience', [])) ? 'checked' : '' }}>
+              <span>Fresher</span>
+          </label>
+
+          <label class="filter-option">
+              <input type="checkbox" name="experience[]" value="Less than 1 years"
+              {{ in_array('Less than 1 years', request('experience', [])) ? 'checked' : '' }}>
+              <span>Less than 1 years</span>
+          </label>
+
+          <label class="filter-option">
+              <input type="checkbox" name="experience[]" value="Less than 2 years"
+              {{ in_array('Less than 2 years', request('experience', [])) ? 'checked' : '' }}>
+              <span>Less than 2 years</span>
+          </label>
+
+          <label class="filter-option">
+              <input type="checkbox" name="experience[]" value="Less than 3 years"
+              {{ in_array('Less than 3 years', request('experience', [])) ? 'checked' : '' }}>
+              <span>Less than 3 years</span>
+          </label>
+
+          <label class="filter-option">
+              <input type="checkbox" name="experience[]" value="Less than 4 years"
+              {{ in_array('Less than 4 years', request('experience', [])) ? 'checked' : '' }}>
+              <span>Less than 4 years</span>
+          </label>
+
+          <label class="filter-option">
+              <input type="checkbox" name="experience[]" value="More than 4 years"
+              {{ in_array('More than 4 years', request('experience', [])) ? 'checked' : '' }}>
+              <span>More than 4 years</span>
+          </label>
+      </div>
+
       <button type="submit" class="filter-btn">Apply Filters</button>
-
       <a href="{{ url('/find-jobs') }}" class="clear-btn">Clear All</a>
-
     </form>
 
   </aside>
 <div class="overlay" onclick="toggleFilters()"></div>
 
-  <!-- RIGHT JOB LIST -->
   <main class="job-listing">
     <div class="job-container">
           @forelse($jobs as $job)
@@ -271,11 +279,7 @@
 
                 @if($days < 3)
                   <img style="width:20px;height:20px;" src="{{ asset('images/new.gif') }}" class="new-gif company-logo">
-
-
                 @endif
-
-
 
                 <div class="job-company">
                   <h3>{{$job->company_name}}</h3>
@@ -287,14 +291,12 @@
 
               <div class="job-title">
                 <h2>{{$job->title}}</h2>
-                <p>{{$job->job_type}} • 1 year ago</p>
+                <p>{{$job->job_type}} </p>
               </div>
 
               <div class="job-description">
-
-              {!! Str::limit(strip_tags($job->description), 120) !!}
-                
-                <!-- {{ \Illuminate\Support\Str::limit($job->description, 10, '...') }} -->
+                {{$job->experience}}
+              <!-- {!! Str::limit(strip_tags($job->description), 120) !!} -->
               </div>
 
               @php
@@ -335,7 +337,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- 3. Initialize Swiper -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const swiper = new Swiper('.categorySwiper', {
@@ -350,32 +351,20 @@
                 el: '.swiper-pagination',
                 clickable: true,
             },
-            // Responsive breakpoints
             breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
-                1280: {
-                    slidesPerView: 5,
-                }
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+                1280: { slidesPerView: 5 }
             }
         });
     });
 </script>
 
-
 <script>
 window.onload = function () {
     var form = document.getElementById('filterForm');
-
     var inputs = form.querySelectorAll('input[type="checkbox"], input[type="radio"]');
-
     inputs.forEach(function(input) {
         input.onchange = function () {
             form.submit();
@@ -392,13 +381,18 @@ function toggleFilters() {
 </script>
 
 <style>
-    /* Hero Section */
+.search-item span { font-size: 18px !important; }
+
+.category-text span {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+
 html, body {
   height: auto;
 }
 body {
     margin: 0;
-
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -410,20 +404,106 @@ main {
 .jobs-hero,
 .categories-container,
 .jobs-page {
-  margin-bottom: 0 !important;   /* 🔥 MUST */
+  margin-bottom: 0 !important;
 }
 
+/* Page Layout Fix */
+.jobs-page {
+  display: flex;
+  gap: 30px;
+  min-height: 80vh;
+  align-items: flex-start;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Sidebar Responsive Fix */
+.filters {
+  width: 280px;
+  flex-shrink: 0; /* Sidebar compress nahi hoga */
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  height: fit-content;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 20px;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.close-filter-btn {
+  display: none; /* Desktop par cross button hidden */
+}
+
+/* Right Content Area */
+.job-listing {
+  flex-grow: 1; /* Bache hue saare space ko cover karega */
+  width: 100%;
+}
+
+/* Auto Responsive Grid Fix */
+.job-container {
+  display: grid !important;
+  /* Auto-fill aur minmax cards ko hamesha minimum 260px aur maximum space available me wrap karega */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 20px;
+  width: 100%;
+}
+
+.job-card {
+  min-width: 0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Purani width aur column definitions ko hatakar clean responsive approach */
+@media (max-width: 992px) {
+  .job-container {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  }
+}
+
+/* Mobile Filter Drawer View Toggle */
+@media (max-width: 768px) {
+  .filters {
+    position: fixed;
+    left: -320px;
+    top: 0;
+    height: 100vh;
+    z-index: 999;
+    transition: left 0.3s ease;
+    width: 300px;
+  }
+  .filters.active {
+    left: 0;
+  }
+  .close-filter-btn {
+    display: block;
+  }
+  .filter-toggle {
+    display: block !important;
+  }
+}
 
 .jobs-hero {
   background-color: #e7f3fd;
   padding: 60px 20px;
   text-align: center;
   color: #00395b;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;   /* IMPORTANT */
+  gap: 30px;
 }
 
 .jobs-hero .hero-content h1 {
@@ -441,21 +521,16 @@ main {
   margin: 0 auto 40px;
 }
 
-
-
 /* Search Box */
 .search-box {
  display: flex;
   align-items: center;
   gap: 10px;
-
   width: 100%;
   max-width: 800px;
-
   background: #fff;
   border-radius: 50px;
   padding: 10px 15px;
-
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   position: relative;
   z-index: 2;
@@ -467,23 +542,16 @@ main {
   background: #ddd;
 }
 
-
-
 .search-box select,
 .search-box input {
   width: 100%;
-  height: 40px;   /* IMPORTANT FIX */
+  height: 40px;
   padding: 0 10px;
   border: none;
   outline: none;
   font-size: 14px;
   color: #000;
   background: transparent;
-}
-
-.search-box,
-.categories {
-  position: relative;
 }
 
 .search-box input {
@@ -499,18 +567,6 @@ main {
   font-weight: bold;
   cursor: pointer;
   height: 100%;
-}
-
-/* Categories */
-.categories {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-
-  margin-top: 20px;   /* IMPORTANT */
-  position: relative;
-  z-index: 1;
 }
 
 .category-box {
@@ -535,84 +591,13 @@ main {
         box-shadow: 0 10px 25px rgba(108, 30, 150, 0.1);
 }
 
-.category-box i {
-  font-size: 2rem;
-  color: #3b59ff;
-}
-
-.category-info p {
-  margin: 0;
-  font-weight: bold;
-}
-
-.category-info span {
-   color: #888;
-        font-size: 13px;
-}
-
-.job-container{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-
-
-@media (max-width:768px){
-
-  .jobs-page{
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    display: block;
-  }
-
-  .job-listing{
-    width: 100%;
-    padding: 0 12px !important;
-    margin: 0;
-  }
-
-  .job-container{
-    display: flex !important;
-    flex-direction: column;
-    width: 100%;
-    gap: 15px;
-    padding: 0;
-    margin: 0;
-  }
-
-  .job-card{
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-  }
-
-  .filter-toggle{
-    margin-left: 12px;
-    margin-bottom: 15px;
-  }
-
-}
-
- .swiper-pagination-bullet-active {
-        background: #0049af !important; /* Your Purple Color */
+.swiper-pagination-bullet-active {
+        background: #0049af !important;
     }
     
-    .swiper-pagination {
-        position: relative !important;
-        margin-top: 30px !important;
-    }
-
-/* Header Text */
-.header-text {
-  text-align: center;
-  margin: 20px 0;
-  font-size: 18px;
-  font-weight: 500;
-  color: #00395b;
+.swiper-pagination {
+    position: relative !important;
+    margin-top: 30px !important;
 }
 
 .categories-container {
@@ -623,210 +608,10 @@ main {
         position: relative;
 }
 
-
-/* Page Layout */
-.jobs-page {
-  display: flex;
-  gap: 20px;
-   min-height: 80vh;
-    align-items: flex-start;   /* 🔥 YE ADD KARO */
-
-}
-
-/* Sidebar */
-.filters {
- width: 250px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  height: fit-content;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  position: sticky;
-  top: 20px;
-}
-
-.filter-group {
-  margin-bottom: 20px;
-      text-align: left;
-
-}
-
-.filter-group h4 {
-margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.filter-group label {
-  display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    margin-bottom: 8px;
-    cursor: pointer;
-}
-
-.main-footer {
-  margin-top: auto;   /* 🔥 MOST IMPORTANT */
-  width: 100%;
-  background: #0f172a;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;   /* ✅ spacing inside, not outside */
-}
-
-.filters h3,
-.filters h4 {
-  color: #1a3d7c;
-}
-
-.filter-group input {
-  margin: 0;
-}
-
-
-.filter-group span {
-    text-align: left;
-}
-
-.filter-group input[type="checkbox"],
-.filter-group input[type="radio"] {
- width: 16px;
-    height: 16px;
-    cursor: pointer;
-    accent-color: #2563eb; /* Blue color for checked state */
-    margin: 0;
-}
-
-.filters input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.filters ul {
-  list-style: none;
-  padding: 0;
-}
-
-.filters ul li {
-  padding: 5px 0;
-  color: #555;
-}
-
-/* Job Listing */
-.job-listing {
-  flex: 1;
- 
-  gap: 20px;
-    margin: 0;
-      padding: 20px;
-
-
-}
-
-/* Job Card */
-.job-card {
-  background-color: #f3f6fb;
-  border: 1px solid #1a3d7c;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-}
-
-/* Job Header */
-.job-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 10px;
-}
-
-.company-logo {
-  width: 52px;
-  height: 52px;
-  border-radius: 5px;
-}
-
-/* Company Info */
-.job-company h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #1a3d7c;
-}
-
-.job-company p {
-  margin: 0;
-  font-size: 14px;
-  color: #555;
-}
-
-/* Title */
-.job-title h2 {
-  margin: 10px 0 5px;
-  font-size: 20px;
-  color: #1a3d7c;
-}
-
-.job-title p {
-  margin: 0;
-  font-size: 14px;
-  color: #777;
-}
-
-/* Description */
-.job-description {
-  margin: 10px 0;
-  font-size: 15px;
-  color: #333;
-}
-
-/* Footer */
-.job-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.salary {
-  font-weight: bold;
-  color: #1a3d7c;
-}
-
-.skills span {
-  background-color: #dde9ff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 5px;
-  font-size: 13px;
-  color: #1a3d7c;
-}
-
-/* Button */
-.apply-btn {
-  background-color: #1a3d7c;
-  color: #fff;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .apply-btn:hover {
   background-color: #16326a;
 }
 
-.no-jobs {
-  text-align: center;
-  margin-top: 60px;
-  font-size: 20px;
-
-}
 .search-item {
   display: flex;
   align-items: center;
@@ -835,22 +620,62 @@ margin-bottom: 10px;
 }
 
 .filter-btn {
-  width: 100%;
-  padding: 10px;
-  background: #0049af;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  margin-top: 10px;
-  cursor: pointer;
+  width:100%;
+  padding:10px;
+  background:#0049af;
+  border:none;
+  color:#fff;
+  border-radius:8px;
+  font-weight:bold;
+  margin-top:10px;
 }
 
 .clear-btn {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-  color: red;
-  text-decoration: none;
+  display:block;
+  text-align:center;
+  margin-top:8px;
+  font-size:13px;
+  color:#666;
+}
+
+.filter-group{
+  padding:12px 0;
+  border-top:1px solid #f1f1f1;
+}
+
+.filter-header h3{
+  font-size:16px;
+  margin:0;
+}
+
+/* Margin-left negative fix to prevent bad alignment */
+.filter-group h4{
+  font-size:13px;
+  font-weight: 700;
+  margin-bottom:8px;
+  color:#333;
+  text-align: left;
+}
+
+.filter-option{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  margin: 6px 0;
+  cursor: pointer;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.filter-option span{
+  text-align: left !important;
+  display: inline-block;
+  flex: 1;
+}
+.filter-option input{
+  accent-color:#ff5a3c;
 }
 
 .new-gif{
@@ -860,4 +685,4 @@ margin-bottom: 10px;
   top: 10px;
   right: 10px;
 }
-    </style>
+</style>

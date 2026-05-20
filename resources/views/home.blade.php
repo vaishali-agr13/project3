@@ -98,15 +98,21 @@
                       
                       <div class="text-xl">📂</div>
                       
-                      <div class="flex flex-col overflow-hidden">
-                          <template x-if="selected !== ''">
-                              <span class="text-[10px] text-blue-500 font-bold uppercase leading-none mb-1">Category</span>
-                          </template>
+                      <div class="flex flex-col min-w-0">
 
-                          <span class="text-gray-700 font-semibold leading-tight truncate" 
-                                x-text="selected === '' ? 'Select Category' : selected">
-                          </span>
-                      </div>
+                            <template x-if="selected !== ''">
+                                <span class="text-[10px] text-blue-500 font-bold uppercase leading-none mb-1">
+                                    Category
+                                </span>
+                            </template>
+
+      <span
+    class="truncate leading-tight !text-[14px] !font-normal"
+    :class="selected === '' ? '!text-gray-400' : '!text-gray-700'"
+    x-text="selected === '' ? 'Select Category' : selected">
+</span>
+
+                        </div>
 
                       <svg class="w-4 h-4 text-gray-400 transition-transform duration-300 ml-auto" 
                           :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +131,7 @@
               /* Added 'text-left' to align text and 'md:left-0' for desktop */
               class="absolute left-0 right-0 md:right-auto md:left-0 top-full mt-2 w-full md:w-64 bg-white border border-gray-100 rounded-xl shadow-2xl z-50 text-left">
               
-              <div x-show="open" x-transition class="category-dropdown p-1"> <div @click="selected = ''; open = false" 
+              <div x-show="open" x-transition class="category-dropdown p-1 max-h-60 overflow-y-auto"> <div @click="selected = ''; open = false" 
                       class="px-4 py-2 text-xs text-gray-400 hover:bg-gray-50 cursor-pointer rounded-lg mb-1">
                       None (Clear)
                   </div>
@@ -312,7 +318,7 @@
   <div class="job-alert-container">
 
     <div class="job-alert-left">
-      <h2>Never miss out <span style="color: #76ac20">on the latest career</span> opportunities</h2>
+      <h2>Never miss out <span style="color: #0049af">on the latest career</span> opportunities</h2>
       
       <p>
         Get daily alerts and stay ahead!
@@ -334,7 +340,7 @@
 
 
 <!-- 🔹 WHATSAPP COMMUNITY SECTION -->
-<section class="py-16 text-white" style="background:#76ac20; position:relative; z-index:1;">
+<section class="py-16 text-white" style="background:#0049af; position:relative; z-index:1;">
     <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
 
     <!-- LEFT CONTENT -->
@@ -550,6 +556,18 @@
 </section>
 
 @endsection
+
+<style>
+
+
+.search-item span { font-size: 18px !important; }
+
+
+.category-text span {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+  </style>
 
 <script>
 window.onload = function() {

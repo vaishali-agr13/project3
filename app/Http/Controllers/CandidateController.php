@@ -44,11 +44,27 @@ class CandidateController extends Controller
     }
 
 
-    public function candidateList(){
-         // $candidates = User::where('role', 'candidate')->get();
-         $candidates = User::with('profile')->where('role', 'candidate')->get();
+    public function candidateList(Request $request){
+         $query  = User::with('candidateProfile')->where('role', 'candidate');
 
-          return view('candidate.index', compact('candidates'));
+         if ($request->filled('name')) {
+                $query->where('name', 'like', '%' . $request->name . '%');
+            }
+
+            // Email filter
+            if ($request->filled('email')) {
+                $query->where('email', 'like', '%' . $request->email . '%');
+            }
+
+            // Phone filter
+            if ($request->filled('phone')) {
+                $query->whereHas('candidateProfile', function ($q) use ($request) {
+                    $q->where('phone', 'like', '%' . $request->phone . '%');
+                });
+            }
+
+            $candidates = $query->latest()->get();
+             return view('candidate.index', compact('candidates'));
     }
      public function register(Request $request)
     {
