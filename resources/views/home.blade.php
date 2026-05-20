@@ -241,7 +241,7 @@
 
                 <p>{{ $job->company_name }}</p>
 
-                <p>{{ \Illuminate\Support\Str::limit($job->location, 10, '...') }}</p>
+                <p>{{ \Illuminate\Support\Str::limit($job->district, 10, '...') }}</p>
 
                 <a href="{{ route('jobs.show', $job->id) }}" class="block mt-4">
                     <button class="apply-btn">View Details →</button>    

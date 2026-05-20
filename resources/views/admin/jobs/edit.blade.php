@@ -42,8 +42,8 @@
             </div>
 
             <div class="form-group">
-                <label>Location</label>
-                <input type="text" name="location" class="form-control" value="{{ $job->location }}" required>
+                <label>District</label>
+                <input type="text" name="location" class="form-control" value="{{ $job->district }}" required>
             </div>
 
            <div class="form-group">

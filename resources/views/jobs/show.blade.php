@@ -12,7 +12,7 @@
                     <div class="flex items-center justify-between mb-6">
                         <div>
                             <h1 class="text-3xl font-bold text-gray-900">{{ $job->title }}</h1>
-                            <p class="text-blue-600 font-medium text-lg">{{ $job->company_name }} • {{ $job->location }}</p>
+                            <p class="text-blue-600 font-medium text-lg">{{ $job->company_name }} • {{ $job->district }}</p>
                         </div>
                         <span class="bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-semibold">
                             {{ $job->job_type }}
