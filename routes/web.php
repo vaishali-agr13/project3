@@ -67,6 +67,8 @@ Route::get('candidate/register', [CandidateController::class, 'showForm'])->name
 Route::post('/register', [CandidateController::class, 'register']);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/jobs', [HomeController::class, 'getJobs']);
+
 Route::get('/categories', function () { return view('categories'); });
 Route::get('/categories/{slug}', [CategoryController::class, 'show']);
 Route::post('/jobs/store', [JobController::class, 'store']);
