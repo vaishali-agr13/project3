@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RGPV Clone Design</title>
+  <title>FK Strategy Job Portal</title>
 
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
@@ -33,7 +34,7 @@
   <!-- HEADER -->
   <header class="header">
     <div class="logo-area">
-      <img src="https://upload.wikimedia.org/wikipedia/en/6/63/RGPV_logo.png" alt="">
+      <img src="{{ asset('images/company-logo.png') }}" alt="">
       <div>
         <h1>FK Strategy</h1>
         <p>State Technological University of M.P.</p>
@@ -56,6 +57,122 @@
     </ul>
   </nav>
 
+  <!-- SLIDER SECTION -->
+  <section class="hero-slider">
+
+    <div class="slides">
+
+      <div class="slide active">
+        <img src="{{ asset('images/home1.png') }}" alt="">
+        <div class="overlay">
+          <h2>Welcome To FK Strategy</h2>
+          <p>State Technological University of Madhya Pradesh</p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="{{ asset('images/home2.png') }}" alt="">
+        <div class="overlay">
+          <h2>Build Your Career</h2>
+          <p>Explore Jobs, Internships & Opportunities</p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <img src="{{ asset('images/home3.png') }}" alt="">
+        <div class="overlay">
+          <h2>Innovation & Research</h2>
+          <p>Empowering Students With Technology</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Buttons -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
+  </section>
+
+
+
+  <!-- OUR SERVICES SECTION -->
+
+<section class="services-section">
+
+    <div class="section-title">
+        <h2>Our <span>Services</span></h2>
+    </div>
+
+    <div class="services-container">
+
+        <!-- CARD 1 -->
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" alt="">
+
+            <div class="service-content">
+                <h3>Training & Development</h3>
+
+                <p>
+                    We understand that it is essential for the growth of an organization
+                    that its employees are highly skilled and trained.
+                </p>
+
+                <a href="#" class="service-btn">View More</a>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="">
+
+            <div class="service-content">
+                <h3>Software Designing & Development</h3>
+
+                <p>
+                    Mass Management Services Pvt. Ltd. renders matchless Software
+                    Designing & Development outsourcing services.
+                </p>
+
+                <a href="#" class="service-btn">View More</a>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" alt="">
+
+            <div class="service-content">
+                <h3>Placement Services</h3>
+
+                <p>
+                    We render Placement Services across diverse verticals.
+                    The company is associated with reputed organizations.
+                </p>
+
+                <a href="#" class="service-btn">View More</a>
+            </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" alt="">
+
+            <div class="service-content">
+                <h3>Manpower Recruitment</h3>
+
+                <p>
+                    Organizations that need assistance in Manpower Recruitment
+                    must contact us for the best hiring solutions.
+                </p>
+
+                <a href="#" class="service-btn">View More</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
   <!-- BUTTON SECTION -->
   <section class="button-section">
 
@@ -126,5 +243,55 @@
 
   </section>
 
+  <!-- SLIDER SCRIPT -->
+<script>
+
+const slides = document.querySelector('.slides');
+const slide = document.querySelectorAll('.slide');
+
+let index = 0;
+
+function showSlide() {
+
+    slides.style.transform = `translateX(-${index * 100}%)`;
+}
+
+document.querySelector('.next').addEventListener('click', () => {
+
+    index++;
+
+    if(index >= slide.length){
+        index = 0;
+    }
+
+    showSlide();
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+
+    index--;
+
+    if(index < 0){
+        index = slide.length - 1;
+    }
+
+    showSlide();
+});
+
+/* auto slider */
+
+setInterval(() => {
+
+    index++;
+
+    if(index >= slide.length){
+        index = 0;
+    }
+
+    showSlide();
+
+}, 4000);
+
+</script>
 </body>
 </html>
